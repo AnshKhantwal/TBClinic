@@ -1,0 +1,335 @@
+@use 'sass:color';
+
+$primary-red: #393362;
+$dark-red: #f15f64;
+$text-color: #111;
+$gray: #777;
+$bg-light: #f9f9f9;
+$mobile-breakpoint: 768px; // Define the breakpoint for mobile devices
+
+.main-footer {
+  background-color: $bg-light;
+  color: $text-color;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.footer-top {
+  padding: 40px 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 20px; /* Add horizontal padding for smaller screens */
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 220px;
+  margin: 10px 0;
+
+  h4 {
+    color: $dark-red;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  &.network {
+    margin-right: 60px; /* Keep desktop margin */
+  }
+
+  &.hours-col {
+    margin-left: -80px; /* Keep desktop margin */
+    margin-right: 80px; /* Keep desktop margin */
+
+    .hour-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      margin-right: 20px;
+      border-bottom: 1px solid #eee;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .fa-clock {
+        color: $dark-red;
+        margin-right: 10px;
+        font-size: 16px;
+      }
+
+      .days {
+        flex-grow: 1;
+        font-weight: 500;
+        color: #333;
+        white-space: nowrap;
+        margin-right: 15px;
+      }
+
+      .time {
+        font-weight: 500;
+        color: $primary-red;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    li {
+      margin-bottom: 8px;
+      color: $text-color;
+      i {
+        color: $dark-red;
+        margin-right: 6px;
+      }
+    }
+  }
+}
+
+/* Branding */
+.branding-col {
+  flex: 1.5;
+  .footer-logo img {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+
+  .tagline {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .contact {
+    font-size: 14px;
+    i {
+      color: $dark-red;
+      margin-right: 6px;
+    }
+    .phone-number {
+      color: $dark-red;
+      font-weight: 600;
+    }
+  }
+
+  .email {
+    margin-top: 8px;
+    font-size: 14px;
+    i {
+      color: $dark-red;
+      margin-right: 6px;
+    }
+  }
+
+  .follow {
+    margin-top: 15px;
+    color: $dark-red;
+    font-weight: 600;
+  }
+
+  .social-links {
+    margin-top: 5px;
+
+    a {
+      display: inline-block;
+      margin-right: 12px;
+      text-decoration: none;
+
+      i {
+        color: $dark-red;
+        font-size: 18px;
+        transition: color 0.2s;
+
+        &:hover {
+          color: color.adjust($dark-red, $lightness: -10%);
+        }
+      }
+    }
+
+    a:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .btn-quick-enquiry {
+    display: inline-block;
+    background: $dark-red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 25px;
+    font-weight: 600;
+    box-shadow: 3px 3px 0 #7a0000;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      background: color.adjust($dark-red, $lightness: -10%);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+/* Join Our Team Button */
+.btn-join-team {
+  background: $dark-red;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  padding: 8px 20px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.2s;
+  &:hover {
+    background: color.adjust($dark-red, $lightness: -10%);
+  }
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  background: $primary-red;
+  color: #fff;
+  text-align: center;
+  padding: 10px; /* Increased padding for better mobile readability */
+  font-size: 13px;
+}
+
+// --- 📱 MOBILE RESPONSIVENESS STYLES ---
+
+@media (max-width: $mobile-breakpoint) {
+  .footer-container {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
+  .footer-col {
+    flex: 0 0 100%;
+    min-width: 100%;
+    margin: 20px 0;
+
+    &.hours-col {
+      margin-left: 0;
+      margin-right: 0;
+      .hour-row {
+        margin-right: 0;
+      }
+    }
+
+    &.network {
+      margin-right: 0;
+    }
+  }
+
+  .branding-col {
+    flex: 0 0 100%;
+  }
+
+  /* ✅ Added: Logo left, details right on mobile only */
+  .branding-col {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    text-align: left;
+
+    .footer-logo {
+      flex-shrink: 0;
+
+      img {
+        height: 70px;
+        width: auto;
+      }
+    }
+
+    p,
+    .btn-quick-enquiry {
+      margin: 4px 0;
+    }
+
+    .btn-quick-enquiry {
+      display: inline-block;
+      background: $dark-red;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      font-weight: 600;
+      font-size: 13px;
+      box-shadow: 2px 2px 0 #7a0000;
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+        // background: darken($dark-red, 10%);
+        background: color.adjust($dark-red, $lightness: -10%);
+        transform: translateY(-1px);
+      }
+    }
+
+    /* Stack again for very small phones */
+    @media (max-width: 420px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+}
+@media (max-width: $mobile-breakpoint) {
+  /* --- Two-column grid for 'Our Network' and 'Others' --- */
+  .footer-col.network ul,
+  .footer-col:not(.branding-col):not(.hours-col):not(.network) ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* two per row */
+    gap: 8px 12px;
+    padding: 0;
+    margin: 10px 0 15px 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      line-height: 1.4;
+
+      i {
+        color: $dark-red;
+        margin-right: 5px;
+        font-size: 13px;
+      }
+
+      a {
+        color: $text-color;
+        text-decoration: none;
+        transition: color 0.2s;
+
+        &:hover {
+          color: $dark-red;
+        }
+      }
+    }
+  }
+
+  /* --- Adjust 'Join Our Team' button for mobile --- */
+  .footer-col.network .btn-join-team {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+}

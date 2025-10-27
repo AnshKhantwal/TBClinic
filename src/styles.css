@@ -1,0 +1,7 @@
+/* You can add global styles to this file, and also import other style files */
+body, html {
+    width: 100%;
+    overflow-x: hidden; /* Prevents horizontal scrolling if content accidentally overflows */
+    margin: 0; /* REMOVE DEFAULT BROWSER MARGIN */
+    padding: 0; /* REMOVE DEFAULT BROWSER PADDING */
+}

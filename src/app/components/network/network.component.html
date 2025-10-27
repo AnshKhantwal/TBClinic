@@ -1,0 +1,61 @@
+<section class="network-section">
+  <!-- City Tabs -->
+  <div class="city-nav-bar">
+    <div class="city-nav-container">
+      <a *ngFor="let city of networkCities"
+         href="#"
+         class="city-link"    
+         [class.active]="city === 'All Locations'">
+        {{ city }}
+      </a>
+    </div>
+  </div>
+
+  <!-- Two-Column Layout -->
+  <div class="network-content-wrapper">
+    <div class="content-container">
+      
+      <!-- Left Info Panel -->
+      <div class="network-info-panel">
+        <h2 class="info-title">{{ contactInfo.title }}</h2>
+        <p class="info-description">{{ contactInfo.description }}</p>
+      </div>
+
+      <!-- Right Cards Carousel -->
+      <div class="locations-carousel">
+        <div class="carousel-track">
+          <div class="location-card" *ngFor="let loc of hospitalLocations">
+            
+            <!-- Branch Name Header -->
+            <h3 class="branch-name-header">{{ loc.branchName }}</h3>
+            
+            <!-- Map Embed Area (Replaces Card Image) -->
+            <div class="map-embed-area">
+              <iframe 
+                [src]="loc.mapEmbedUrl | safeUrl" 
+                width="100%" 
+                height="200" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                [title]="'Map for ' + loc.branchName"
+              ></iframe>
+            </div>
+            
+            <!-- Address and Details (Replaces Card Details) -->
+            <div class="branch-details">
+              <p class="address-line">
+                <i class="fa fa-map-marker-alt"></i> {{ loc.addressLine }}
+              </p>
+              
+              <a href="https://www.google.com/maps/search/?api=1&query={{ loc.addressLine | urlEncode }}" target="_blank" class="btn-get-directions">
+                Get Directions
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

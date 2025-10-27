@@ -1,0 +1,48 @@
+<section class="doctors-page-content">
+  <div class="cmo-hero-section">
+    <div class="container">
+      <div class="cmo-card">
+        <div class="cmo-text-content">
+          <p class="cmo-designation">Chief Medical Officer</p>
+          <h1 class="cmo-name">{{ cmo.name }}</h1>
+          <p class="cmo-experience">
+            <span class="highlight">{{ cmo.experience }}</span>
+            of Dedicated Clinical Experience
+          </p>
+          <p class="cmo-bio">
+            Leading our clinic with unparalleled expertise in complex **TB
+            cases**, Dr. Sunita(TB Expert) sets the standard for patient care and clinical
+            innovation across our entire network.
+          </p>
+          <button class="btn-appointment">Book Consultation</button>
+        </div>
+        <div class="cmo-photo-placeholder">
+          <span class="initials">S</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <h2 class="section-title">Meet the Specialists Behind Your Care</h2>
+    
+    <div class="sub-doctors-grid-wrapper">
+      <h3 class="sub-title">Our Core Team of TB Experts</h3>
+      <div class="doctors-grid">
+        <div *ngFor="let doctor of subDoctors" class="doctor-card">
+          <div class="doctor-photo-placeholder">
+            <span class="initials">{{ doctor.name[4] }}</span>
+          </div>
+          <h4 class="doctor-name">{{ doctor.name }}</h4>
+          <p class="doctor-designation">
+            Consultant (TB Expert)
+          </p>
+          <div class="experience-tag">
+            {{ doctor.experience }} Experience
+          </div>
+          <!-- <a href="#" class="btn-view-profile">View Profile & Book</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,235 @@
+@use "sass:color";
+
+$primary-red: #f15f64;
+$dark-text: #2d2d2d;
+$border-color: #e0e0e0;
+$map-border: #f2f2f2;
+
+.network-section {
+  background-color: #fff;
+  margin-top: -90px;
+  padding: 60px 0;
+  font-family: "Poppins", sans-serif;
+
+  @media (max-width: 768px) {
+    margin-top: 0;
+    padding: 40px 0;
+  }
+}
+
+/* --- Top Navigation (Tabs) --- */
+.city-nav-bar {
+  border-bottom: 1px solid $border-color;
+  margin-bottom: 40px;
+
+  .city-nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: thin;
+
+    @media (max-width: 768px) {
+      padding: 0 10px;
+    }
+  }
+
+  .city-link {
+    color: #666;
+    font-size: 15px;
+    text-decoration: none;
+    padding: 12px 18px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+
+    &.active,
+    &:hover {
+      color: $primary-red;
+      border-bottom-color: $primary-red;
+      font-weight: 600;
+    }
+  }
+}
+
+/* --- Two-Column Layout --- */
+.network-content-wrapper {
+  .content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+
+    @media (max-width: 992px) {
+      gap: 25px;
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 30px;
+    }
+  }
+}
+
+/* --- Left Panel --- */
+.network-info-panel {
+  flex-shrink: 0;
+  width: 340px;
+  background: $primary-red;
+  color: #fff;
+  border-radius: 8px;
+  padding: 40px 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  margin: 0 auto; /* helps with centering on wrap */
+
+  .info-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .info-description {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* --- Tablet & Mobile --- */
+  @media (max-width: 992px) {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 480px) {
+    padding: 30px 20px;
+    .info-title {
+      font-size: 20px;
+    }
+    .info-description {
+      font-size: 14px;
+    }
+  }
+}
+
+/* --- Right Scroll Cards --- */
+.locations-carousel {
+  flex-grow: 1;
+  overflow-x: auto;
+  padding-bottom: 10px;
+
+  .carousel-track {
+    display: flex;
+    gap: 25px;
+    flex-wrap: nowrap;
+
+    @media (max-width: 768px) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+}
+
+.location-card {
+  flex-shrink: 0;
+  width: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  @media (max-width: 1024px) {
+    width: 280px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%; /* full width on mobile */
+  }
+
+  .branch-name-header {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: $primary-red;
+    padding: 15px 15px 5px 15px;
+    margin: 0;
+    border-bottom: 1px solid $map-border;
+  }
+
+  /* --- Map Embed Responsive Fix --- */
+  .map-embed-area {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* keeps responsive map height */
+    border-bottom: 1px solid $border-color;
+    background: #f8f8f8;
+    position: relative;
+    overflow: hidden;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  }
+
+  .branch-details {
+    padding: 15px;
+
+    .address-line {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.4;
+      margin-bottom: 15px;
+
+      .fa-map-marker-alt {
+        color: $primary-red;
+        margin-right: 5px;
+      }
+    }
+
+    .btn-get-directions {
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: $primary-red;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background-color 0.2s;
+
+      &:hover {
+        // background-color: darken($primary-red, 10%);
+        background-color: color.adjust($primary-red, $lightness: -10%);
+      }
+    }
+  }
+}
+
+/* --- Scrollbar Styling for Mobile --- */
+.locations-carousel::-webkit-scrollbar {
+  height: 6px;
+}
+.locations-carousel::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}

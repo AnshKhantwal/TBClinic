@@ -1,0 +1,74 @@
+<div class="top-marquee">
+  <div class="marquee-content">
+    A Physician once said , "The best medicine for Humans is Love" Someone asked, "What if it doesn't work?" He smiled and said, "Increase the dose"
+  </div>
+</div>
+
+<!-- Static Hero Section with Blurred Background -->
+<section 
+  class="hero-static" 
+  [style.background-image]="'url(' + staticBackgroundUrl + ')'"
+>
+</section>
+
+<!-- Form Overlay -->
+<div class="form-overlay-container">
+    <div class="form-card">
+        <h3>Book Your Consultation</h3>
+        <p class="form-subtitle">We will call you back within 15 minutes.</p>
+
+        <form (ngSubmit)="onSubmitForm()">
+            <!-- Name (Mandatory) -->
+            <div class="form-group">
+                <input 
+                    type="text" 
+                    placeholder="Your Full Name" 
+                    [(ngModel)]="formData.name" 
+                    name="name" 
+                    required
+                >
+            </div>
+
+            <!-- NEW: Select Clinic (Mandatory) -->
+        <div class="form-group select-group">
+          <select id="clinic" name="clinic" [(ngModel)]="formData.clinic" required>
+            <!-- Use the native Angular control flow for looping -->
+            @for (hospital of hospitals; track hospital) {
+              <option [value]="hospital">{{ hospital }}</option>
+            }
+          </select>
+        </div>
+
+
+            <!-- Mobile No (Mandatory) -->
+            <div class="form-group">
+                <input 
+                    type="tel" 
+                    placeholder="Mobile Number *" 
+                    [(ngModel)]="formData.mobile" 
+                    name="mobile" 
+                    maxlength="10"
+                    pattern="[0-9]{10}"
+                    required
+                >
+            </div>
+
+            <!-- Email (Not Mandatory) -->
+            <div class="form-group">
+                <input 
+                    type="email" 
+                    placeholder="Email Address (Optional)" 
+                    [(ngModel)]="formData.email" 
+                    name="email"
+                >
+            </div>
+
+            <button type="submit" class="btn-submit">Request a Callback Now</button>
+        </form>
+    </div>
+</div>
+
+<!-- Floating CTA (Moved out of the old booking bar) -->
+<!-- <div class="floating-cta">
+    SPEAK TO US! WE ARE ONLINE
+</div> -->

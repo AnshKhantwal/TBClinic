@@ -1,0 +1,50 @@
+<section class="testimonials-section">
+  <div class="section-header">
+    <h2>Patient Testimonials</h2>
+  </div>
+
+  <div class="carousel-container">
+    
+    <!-- Left Navigation Button -->
+    <button class="nav-button prev-button" (click)="prevSlide()">
+      <i class="fa fa-chevron-left"></i>
+    </button>
+    
+    <!-- Testimonial Slides (Visible area) -->
+    <div class="slides-wrapper">
+      <div 
+        class="testimonial-slider"
+        [style.transform]="'translateX(' + (-currentSlideIndex * 100) + '%)'"
+      >
+        <!-- Individual Testimonial Cards -->
+        <div class="testimonial-card" *ngFor="let testimonial of testimonials">
+          <div class="quote-content">
+            <i class="fa fa-quote-left quote-icon"></i>
+            <p class="quote-text">{{ testimonial.quote }}</p>
+          </div>
+          
+          <div class="author-info">
+            <p class="author-name"><strong>{{ testimonial.name }}</strong></p>
+            <p class="author-title">{{ testimonial.title }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Right Navigation Button -->
+    <button class="nav-button next-button" (click)="nextSlide()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    
+  </div>
+  
+  <!-- Dot Indicators -->
+  <div class="dots-container">
+    <span 
+      *ngFor="let testimonial of testimonials; let i = index"
+      class="dot"
+      [class.active]="i === currentSlideIndex"
+      (click)="currentSlideIndex = i; resetAutoScroll()"
+    ></span>
+  </div>
+</section>

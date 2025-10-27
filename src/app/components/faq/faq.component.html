@@ -1,0 +1,35 @@
+<section class="faq-section">
+    <div class="container">
+        <!-- Breadcrumb/Title Area -->
+        <div class="header-band">
+            <p class="breadcrumb">Home / FAQs</p>
+        </div>
+
+        <!-- Accordion List -->
+        <div class="accordion-list">
+            @for (item of faqs; track item.id) {
+                <!-- Check if the current item is open -->
+                @if (openItemId() === item.id) {
+                    <!-- OPEN ITEM: Uses RED header style -->
+                    <div class="accordion-item open">
+                        <div class="accordion-header red-header" (click)="toggleAnswer(item.id)">
+                            <h3 class="question-text">{{ item.question }}</h3>
+                            <span class="icon-toggle">-</span>
+                        </div>
+                        <div class="accordion-body">
+                            <p>{{ item.answer }}</p>
+                        </div>
+                    </div>
+                } @else {
+                    <!-- CLOSED ITEM: Uses BLUE header style -->
+                    <div class="accordion-item closed">
+                        <div class="accordion-header blue-header" (click)="toggleAnswer(item.id)">
+                            <h3 class="question-text">{{ item.question }}</h3>
+                            <span class="icon-toggle">+</span>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>

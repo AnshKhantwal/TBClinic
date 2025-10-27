@@ -1,0 +1,283 @@
+@use "sass:color";
+
+$primary-red: #a00000;
+$dark-red-title: #9c0000;
+$dark-text: #333;
+$light-bg: #f5f5f5;
+
+.treatments-ce-section {
+  padding: 60px 0;
+  background-color: #fff;
+}
+
+.ce-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+/* --- LEFT SIDE: Treatment List --- */
+.ce-list-wrapper {
+  flex: 1;
+  min-width: 50%;
+
+  .section-title {
+    font-size: 28px;
+    color: $primary-red;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: left;
+  }
+
+  .specialties-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    gap: 30px 40px;
+  }
+
+  .specialty-item {
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+
+    &:hover .treatment-name {
+      color: $primary-red;
+    }
+
+    .item-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 8px;
+    }
+
+    img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+      filter: invert(74%) sepia(35%) saturate(3015%) hue-rotate(338deg)
+        brightness(101%) contrast(98%);
+    }
+
+    .treatment-name {
+      color: $dark-text;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+
+    .treatment-details-text {
+      color: #666;
+      font-size: 15px;
+      line-height: 1.6;
+      padding-left: 60px;
+      margin-top: 0;
+    }
+  }
+}
+
+/* --- RIGHT SIDE: Expert Search Section --- */
+.expert-search-section {
+  margin-top: 150px;
+  flex: 1;
+  max-width: 450px;
+  background: $light-bg;
+  border-top-left-radius: 120px;
+  border-bottom-left-radius: 120px;
+  padding: 50px 40px 0 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+
+  h3 {
+    color: $dark-red-title;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #444;
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 340px;
+    margin-bottom: 25px;
+  }
+
+  .btn-doctor-search {
+    display: inline-flex;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 4px;
+    overflow: hidden;
+
+    .label {
+      background-color: #f15f64;
+      color: #fff;
+      padding: 12px 24px;
+      transition: background 0.3s;
+    }
+
+    .arrow {
+      background-color: #d1d1d1;
+      color: #9c0000;
+      padding: 9px 14px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      .label {
+        background-color: color.adjust(#9c0000, $lightness: -8%, $space: hsl);
+      }
+      .arrow {
+        background-color: color.adjust(#d1d1d1, $lightness: -8%, $space: hsl);
+        transform: translateX(2px);
+      }
+    }
+  }
+
+  .expert-illustration {
+    margin-top: 30px;
+    text-align: center;
+
+    img {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+}
+
+/* --- RESPONSIVENESS --- */
+
+/* Tablets & Small Laptops */
+@media (max-width: 992px) {
+  .ce-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .ce-list-wrapper {
+    min-width: 100%;
+  }
+
+  .ce-list-wrapper .specialties-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .expert-search-section {
+    margin-top: 40px;
+    border-radius: 20px;
+    padding: 30px 25px;
+    max-width: 100%;
+    text-align: center;
+
+    h3 {
+      font-size: 22px;
+    }
+
+    p {
+      max-width: 100%;
+    }
+
+    .btn-doctor-search {
+    flex-direction: row; /* <— force row layout */
+    width: 100%;
+    justify-content: center;
+
+    .label,
+    .arrow {
+      width: auto; /* don’t stretch */
+    }
+
+    .arrow {
+      padding: 9px 16px;
+    }
+  }
+  }
+}
+
+/* Phones */
+@media (max-width: 576px) {
+  .treatments-ce-section {
+    padding: 40px 0;
+  }
+
+  .ce-list-wrapper .section-title {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .ce-list-wrapper .specialties-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .specialty-item {
+    .item-header img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .treatment-name {
+      font-size: 15px;
+    }
+
+    .treatment-details-text {
+      padding-left: 0;
+      font-size: 14px;
+      line-height: 1.5;
+      text-align: justify;
+    }
+  }
+
+  .expert-search-section {
+    margin-top: 20px;
+    border-radius: 16px;
+    padding: 25px 20px;
+
+    h3 {
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    .btn-doctor-search {
+    flex-direction: row; /* <— force row layout */
+    width: 100%;
+    justify-content: center;
+
+    .label,
+    .arrow {
+      width: auto; /* don’t stretch */
+    }
+
+    .arrow {
+      padding: 9px 16px;
+    }
+  }
+
+    .expert-illustration img {
+      max-width: 300px;
+    }
+  }
+}

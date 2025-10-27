@@ -1,0 +1,83 @@
+<div class="about-us-container">
+    
+    <!-- A. RED BANNER WITH STATS (YOUR PROVIDED CODE) -->
+    <section class="about-us-banner">
+        <div class="container">
+            <h1 class="headline">
+                EXCEPTIONAL CARE. EVERY PATIENT. EVERY DAY
+            </h1>
+
+            <div class="stats">
+                <div class="stat-card" *ngFor="let stat of stats">
+                    <div class="icon">
+                        <i [class]="stat.icon"></i>
+                    </div>
+                    <div class="details">
+                        <h2>{{ stat.value }}</h2>
+                        <p>{{ stat.label }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- B. OUR STORY SECTION (NEW CODE ADDED HERE) -->
+    <section class="story-section">
+    <div class="container story-content-wrapper">
+        <div class="story-image">
+            <img [src]="story.imageUrl" alt="Doctor talking to patient">
+        </div>
+
+        <div class="story-content">
+            <h2 class="section-title">{{ story.title }}</h2>
+            <div [innerHTML]="story.content"></div> 
+        </div>
+    </div>
+</section>
+
+    <div class="banner">
+    <img src="assets/EI-Banner-bottom.jpg" style="width: 100%; height: 350px; margin-top: -60px; margin-bottom: 10px;" alt="">
+  </div>
+
+    <!-- C. THE VALUES THAT DEFINE US SECTION -->
+    <section class="values-section">
+    <h2>The Values That Define Us</h2> 
+    <div class="values-grid">
+        <div class="value-card" *ngFor="let value of values">
+            <div class="icon-placeholder">
+                <!-- Assuming value.icon holds a Font Awesome class -->
+                <i [class]="value.icon"></i> 
+            </div>
+            <h3>{{ value.title }}</h3>
+            <p>{{ value.description }}</p>
+        </div>
+    </div>
+</section>
+    
+    <!-- D. AWARDS SECTION -->
+    <!-- <section class="awards-section"> -->
+        <!-- Assuming you have an awards component defined and imported -->
+        <!-- <app-awards></app-awards>  -->
+    <!-- </section> -->
+
+    <!-- E. Testimonials Section -->
+    <section class="testimonials-section">
+    <h2>What Our Patients Says</h2>
+    
+    <div class="testimonials-grid">
+        <div class="testimonial-card" *ngFor="let testimonial of testimonials">
+            <i class="fa fa-quote-left quote-icon"></i>
+            
+            <p class="quote-text">{{ testimonial.quote }}</p>
+            
+            <div class="author-info">
+                <p class="author-name">
+                    <strong>{{ testimonial.name }}</strong>
+                </p>
+                <p class="author-title">{{ testimonial.title }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>

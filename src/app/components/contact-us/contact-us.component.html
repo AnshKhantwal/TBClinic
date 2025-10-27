@@ -1,0 +1,94 @@
+<div class="contact-us-page">
+  <h2 class="page-title">Contact Our Care Team</h2>
+
+  <div class="content-wrapper">
+    <!-- Contact Details Card -->
+    <div class="contact-details-card card-shadow">
+      <h3 class="section-heading">Contact Details</h3>
+
+      <div class="detail-group">
+        <p class="detail-label">Lawrence Road</p>
+        <p class="detail-value">C-8/139, Lawrence Road Gate No :3, Keshavpuram, Delhi -35</p>
+        <br>
+        <p class="detail-label">Mayur Vihar</p>
+        <p class="detail-value">TB Clinic, DDA market, F-7, Mayur Vihar Phase I, Pocket 1, Delhi, 110091</p>
+        <br>
+        <p class="detail-label">Durgapuri</p>
+        <p class="detail-value">C, 45, West Jyoti Nagar, Durgapuri Extension, Durga Puri, Shahdara, Delhi, 110094</p>
+        <br>
+        <p class="detail-label">Uttam Nagar</p>
+        <p class="detail-value">RZ-10, Main Najafgarh Road, Near Pillar No. 713, Next to IDBI Bank, Uttam Nagar</p>
+        <br>
+        <p class="detail-label">Tigri</p>
+        <p class="detail-value">A block 111 ,112, 113 Ground floor bank road jj colony tigri new delhi 110080  near sheetla mata mandir</p>
+      </div>
+      <hr>
+      <div class="detail-group">
+        <p class="detail-label">Helpline</p>
+        <p class="detail-value">+91 98-100-26456</p>
+      </div>
+      <hr>
+      <div class="detail-group">
+        <p class="detail-label">Email</p>
+        <p class="detail-value">tbclinic.info@gmail.com</p>
+      </div>
+    </div>
+
+    <!-- Contact Form Card -->
+    <div class="contact-form-card card-shadow">
+      <h3 class="form-heading">Your Queries, Our Priority <div class="red-underline"></div></h3>
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Name *</label>
+          <input type="text" id="name" name="name" [(ngModel)]="contactForm.name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email </label>
+          <input type="email" id="email" name="email" [(ngModel)]="contactForm.email">
+        </div>
+
+        <div class="form-group">
+          <label for="mobile">Mobile No. *</label>
+          <input type="tel" id="mobile" name="mobile" [(ngModel)]="contactForm.mobile" required>
+        </div>
+
+        <div class="form-group">
+          <label for="hospital">Clinic *</label>
+          <select id="hospital" name="hospital" [(ngModel)]="contactForm.hospital" required>
+            <!-- Use the native Angular control flow for looping -->
+            @for (hospital of hospitals; track hospital) {
+              <option [value]="hospital">{{ hospital }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your Message *</label>
+          <textarea id="message" name="message" rows="5" [(ngModel)]="contactForm.message" required></textarea>
+        </div>
+
+        <!-- RECAPTCHA INTEGRATION POINT (with Placeholder for visual feedback) -->
+        <div class="form-group recaptcha-container">
+            <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY_HERE">
+                <div class="recaptcha-placeholder">
+                    <input type="checkbox" id="robot-check" disabled>
+                    <label for="robot-check">I'm not a robot (Placeholder)</label>
+                    <div class="badge-placeholder">reCAPTCHA</div>
+                </div>
+            </div>
+        </div>
+        
+        <button type="submit" class="submit-button">Submit</button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Chatbot Icon -->
+  <button class="chat-help-btn" (click)="openChat()">
+    <!-- SVG for Chat Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+  </button>
+</div>

@@ -1,0 +1,122 @@
+    @use "sass:color";
+
+    /* --- Variables from your theme --- */
+    $primary-red: #B71C1C;      
+    $primary-blue: #06457F;     
+    $white: #FFFFFF;
+    $dark-text: #333; // Used for answer body text
+    $light-gray-border: #DDD; // A cleaner, less intense border
+
+    .faq-section {
+        padding: 10px;
+        min-height: 50vh;
+        background-color: $white; 
+    }
+
+    .container {
+        max-width: 100%;
+        margin: 0 auto;
+        // padding: 20px;
+    }
+
+    /* --- Top Header Band (Red Strip) --- */
+    .header-band {
+        background-color: $primary-red;
+        color: $white;
+        padding: 20px;
+        margin: 0 -20px 40px -20px; /* Extends past container padding */
+        
+        .breadcrumb {
+            font-size: 0.9em;
+            margin: 0;
+            text-transform: uppercase;
+        }
+    }
+
+    /* --- Accordion Styling --- */
+
+    .accordion-list {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .accordion-item {
+        margin-bottom: 10px; // Increased space between items
+        border-radius: 4px;
+        overflow: hidden; // Ensures borders/shadows are contained
+    }
+
+    .accordion-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        cursor: pointer;
+        color: $white;
+        transition: background-color 0.3s;
+        
+        .question-text {
+            margin: 0;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        .icon-toggle {
+            font-size: 1.5em;
+            font-weight: 700;
+            line-height: 1; // Center the + or -
+        }
+    }
+
+    /* --- Color Schemes --- */
+
+    .red-header {
+        background-color: $primary-red;
+    }
+
+    .blue-header {
+        background-color: $primary-blue;
+        
+        &:hover {
+            background-color: color.adjust($primary-blue, $lightness: -5%);
+        }
+    }
+
+    /* --- Answer Body --- */
+    .accordion-body {
+        background-color: $white;
+        padding: 20px;
+        border: 1px solid $light-gray-border;
+        border-top: none; // Connects visually to the header
+        
+        // This margin creates the red vertical bar effect on the left
+        margin-left: 5px; 
+        
+        // Use a box shadow for subtle lift
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+        p {
+            color: $dark-text;
+            font-size: 0.95em; // Slightly larger text
+            line-height: 1.6;
+            margin: 0;
+        }
+    }
+
+    /* --- Specific Styling for Open Item (First item in image) --- */
+    .accordion-item.open .accordion-body {
+        // Add a vertical colored line on the left for the active answer body
+        border-left: 5px solid $primary-red; 
+        padding-left: 15px; // Compensate for the border width
+    }
+
+    /* --- Responsive Adjustments --- */
+    @media (max-width: 600px) {
+        .header-band {
+            padding: 15px;
+            margin: 0 -20px 20px -20px;
+        }
+        .accordion-header {
+            padding: 12px 15px;
+        }
+    }
