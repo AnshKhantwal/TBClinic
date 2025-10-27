@@ -1,14 +1,12 @@
-// src/app/components/hero-carousel/hero-carousel.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Required for ngModel
+import { FormsModule } from '@angular/forms';
 
 interface LeadForm {
   name: string;
   mobile: string;
   email: string;
-  clinic: string; // NEW: Mandatory clinic selection field
+  clinic: string;
 }
 
 @Component({
@@ -20,48 +18,54 @@ interface LeadForm {
 })
 export class HeroCarouselComponent implements OnInit {
 
-  // Static background image URL
   staticBackgroundUrl: string = 'assets/Doctor.jpeg';
-
-  // NEW: Hospital locations array for the dropdown
   hospitals: string[] = ['Select Clinic', 'Lawrence Road', 'Mayur Vihar', 'Durgapuri', 'Uttam Nagar', 'Tigri'];
 
-  // Form data model
   formData: LeadForm = {
     name: '',
     mobile: '',
     email: '',
-    clinic: this.hospitals[0] // Initialize to 'Select Clinic'
+    clinic: this.hospitals[0]
   };
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-    // Initialization logic if needed
-  }
+  ngOnInit(): void {}
 
-  onSubmitForm(): void {
+  async onSubmitForm(): Promise<void> {
     const isClinicSelected = this.formData.clinic !== this.hospitals[0];
 
     if (!this.formData.name || !this.formData.mobile || !isClinicSelected) {
-      // Validation check for Name, Mobile, and Clinic selection
-      console.error('Validation Error: Please fill in Name, 10-digit Mobile Number, and select a Clinic.');
+      alert('⚠️ Please fill in Name, Mobile, and select a Clinic.');
       return;
     }
 
-    console.log('Callback Requested:', this.formData);
+    const formData = new FormData();
+    formData.append('access_key', '282bc130-d161-4e24-9e93-8eeac1293408'); // 🔹 Replace this
+    formData.append('subject', `New Consultation Request - ${this.formData.name}`);
+    formData.append('from_name', 'Sugar Clinic Website');
+    formData.append('name', this.formData.name);
+    formData.append('email', this.formData.email);
+    formData.append('mobile', this.formData.mobile);
+    formData.append('hospital', this.formData.clinic);
+    formData.append('message', 'Callback request via Hero Carousel Form');
 
-    // TODO: Implement actual data submission logic here
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
 
-    // Clear form after successful submission
-    this.formData = {
-      name: '',
-      mobile: '',
-      email: '',
-      clinic: this.hospitals[0]
-    };
-
-    // Add success message UI feedback here
-    console.log('Thank you! Your request has been sent.');
+      const result = await response.json();
+      if (result.success) {
+        alert('✅ Thank you! We will call you back soon.');
+        this.formData = { name: '', mobile: '', email: '', clinic: this.hospitals[0] };
+      } else {
+        alert('❌ Failed to send your request. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error sending form:', error);
+      alert('❌ Network error. Please try again later.');
+    }
   }
 }

@@ -31,13 +31,10 @@
 
             <!-- NEW: Select Clinic (Mandatory) -->
         <div class="form-group select-group">
-          <select id="clinic" name="clinic" [(ngModel)]="formData.clinic" required>
-            <!-- Use the native Angular control flow for looping -->
-            @for (hospital of hospitals; track hospital) {
-              <option [value]="hospital">{{ hospital }}</option>
-            }
-          </select>
-        </div>
+  <select id="clinic" name="clinic" [(ngModel)]="formData.clinic" required>
+    <option *ngFor="let hospital of hospitals" [value]="hospital">{{ hospital }}</option>
+  </select>
+</div>
 
 
             <!-- Mobile No (Mandatory) -->
