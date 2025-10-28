@@ -41,7 +41,7 @@ export class HeroCarouselComponent implements OnInit {
     }
 
     const formData = new FormData();
-    formData.append('access_key', '282bc130-d161-4e24-9e93-8eeac1293408'); // 🔹 Replace this
+    formData.append('access_key', '282bc130-d161-4e24-9e93-8eeac1293408');
     formData.append('subject', `New Consultation Request - ${this.formData.name}`);
     formData.append('from_name', 'Sugar Clinic Website');
     formData.append('name', this.formData.name);

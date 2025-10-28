@@ -2,65 +2,71 @@
   <div class="footer-top">
     <div class="footer-container">
 
-      <!-- Branding -->
-      <div class="footer-col branding-col">
+      <!-- ✅ Branding Section - Logo Left, Details Right (ALL SCREENS) -->
+      <div class="branding-section">
         <div class="footer-logo">
-          <img src="assets/hospital-logo.png" alt="RG Hospitals Logo">
+          <img src="assets/hospital-logo.png" alt="TB Clinic Logo">
         </div>
 
-        <p class="contact">
-          <i class="fa fa-phone"></i> Have a question? Call us<br>
-          <span class="phone-number">now +91 98-100-26456</span>
-        </p>
+        <div class="contact-info-wrapper">
+          <p class="contact">
+            <i class="fa fa-phone"></i>
+            <span>
+              Have a question? Call us<br>
+              <span class="phone-number">now +91 98-100-26456</span>
+            </span>
+          </p>
 
-        <p class="email">
-          <i class="fa fa-envelope"></i> tbclinic.info@gmail.com
-        </p>
+          <p class="email">
+            <i class="fa fa-envelope"></i>
+            <span>tbclinic.info@gmail.com</span>
+          </p>
 
-        <p class="email">
-    <i class="fa fa-map-marker-alt"></i> C-45, West Jyoti Nagar, Shahdra Delhi – 94
-</p>
+          <p class="email">
+            <i class="fa fa-map-marker-alt"></i>
+            <span>C-45, West Jyoti Nagar, Shahdra Delhi – 94</span>
+          </p>
 
-        <!-- <p class="follow">Follow Us</p>
-        <div class="social-links">
-          <a *ngFor="let social of socialMedia" [href]="social.url" target="_blank">
-            <i class="fa-brands {{ social.icon }}"></i>
-          </a>
-        </div> -->
-
-        <button class="btn-quick-enquiry">Quick Enquiry</button>
+          <button class="btn-quick-enquiry">Quick Enquiry</button>
+        </div>
       </div>
 
-      <!-- Network of Care Column 1 -->
-      <div class="footer-col hours-col">
-    <h4>Clinic Hours</h4>
-    
-    <div *ngFor="let item of clinicHours; let isLast = last" class="hour-row">
-        <i class="fa fa-clock"></i>
-        <span class="days">{{ item.days }}</span>
-        <span class="time">{{ item.hours }}</span>
-    </div>
-</div>
-      <!-- Network of Care Column 2 -->
-      <div class="footer-col network">
-    <h4>Our Network</h4>
-    <ul>
-      <li *ngFor="let link of networkOfCare2">
-        <i class="fa fa-map-marker-alt"></i>
-        <a [href]="link.url" target="_blank">{{ link.name }}</a>
-      </li>
-    </ul>
-    <button class="btn-join-team">Join Our Team</button>
-</div>
+      <!-- ✅ Footer Grid - 3 Columns -->
+      <div class="footer-grid">
+        
+        <!-- Clinic Hours -->
+        <div class="footer-col hours-col">
+          <h4>Clinic Hours</h4>
+          
+          <div *ngFor="let item of clinicHours" class="hour-row">
+            <i class="fa fa-clock"></i>
+            <span class="days">{{ item.days }}</span>
+            <span class="time">{{ item.hours }}</span>
+          </div>
+        </div>
 
-      <!-- Key Resources -->
-      <div class="footer-col">
-        <h4>Others</h4>
-        <ul>
-          <li *ngFor="let link of keyResources">
-            <a href="#" (click)="navigate(link); $event.preventDefault()">{{ link.name }}</a>
-          </li>
-        </ul>
+        <!-- Our Network -->
+        <div class="footer-col network-col">
+          <h4>Our Network</h4>
+          <ul>
+            <li *ngFor="let link of networkOfCare2">
+              <i class="fa fa-map-marker-alt"></i>
+              <a [href]="link.url" target="_blank">{{ link.name }}</a>
+            </li>
+          </ul>
+          <button class="btn-join-team">Join Our Team</button>
+        </div>
+
+        <!-- Others -->
+        <div class="footer-col">
+          <h4>Others</h4>
+          <ul>
+            <li *ngFor="let link of keyResources">
+              <a href="#" (click)="navigate(link); $event.preventDefault()">{{ link.name }}</a>
+            </li>
+          </ul>
+        </div>
+
       </div>
 
     </div>
@@ -68,6 +74,5 @@
 
   <div class="footer-bottom">
     <p>© 2019 TB Clinic. All Rights Reserved</p>
-    <!-- <p class="powered">Powered By <span class="yellow">doors</span> <span class="small">studio</span></p> -->
   </div>
 </footer>

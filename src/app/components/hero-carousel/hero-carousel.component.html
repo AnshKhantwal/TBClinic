@@ -4,68 +4,64 @@
   </div>
 </div>
 
-<!-- Static Hero Section with Blurred Background -->
-<section 
-  class="hero-static" 
-  [style.background-image]="'url(' + staticBackgroundUrl + ')'"
->
-</section>
+<!-- Hero Section with Form Overlay -->
+<section class="hero-section">
+  <!-- Blurred Background Image -->
+  <div 
+    class="hero-background" 
+    [style.background-image]="'url(' + staticBackgroundUrl + ')'"
+  ></div>
 
-<!-- Form Overlay -->
-<div class="form-overlay-container">
+  <!-- Form Overlay -->
+  <div class="form-overlay-container">
     <div class="form-card">
-        <h3>Book Your Consultation</h3>
-        <p class="form-subtitle">We will call you back within 15 minutes.</p>
+      <h3>Book Your Consultation</h3>
+      <p class="form-subtitle">We will call you back within 15 minutes.</p>
 
-        <form (ngSubmit)="onSubmitForm()">
-            <!-- Name (Mandatory) -->
-            <div class="form-group">
-                <input 
-                    type="text" 
-                    placeholder="Your Full Name" 
-                    [(ngModel)]="formData.name" 
-                    name="name" 
-                    required
-                >
-            </div>
+      <form (ngSubmit)="onSubmitForm()">
+        <!-- Name (Mandatory) -->
+        <div class="form-group">
+          <input 
+            type="text" 
+            placeholder="Your Full Name" 
+            [(ngModel)]="formData.name" 
+            name="name" 
+            required
+          >
+        </div>
 
-            <!-- NEW: Select Clinic (Mandatory) -->
+        <!-- Select Clinic (Mandatory) -->
         <div class="form-group select-group">
-  <select id="clinic" name="clinic" [(ngModel)]="formData.clinic" required>
-    <option *ngFor="let hospital of hospitals" [value]="hospital">{{ hospital }}</option>
-  </select>
-</div>
+          <select id="clinic" name="clinic" [(ngModel)]="formData.clinic" required>
+            <option *ngFor="let hospital of hospitals" [value]="hospital">{{ hospital }}</option>
+          </select>
+        </div>
 
+        <!-- Mobile No (Mandatory) -->
+        <div class="form-group">
+          <input 
+            type="tel" 
+            placeholder="Mobile Number *" 
+            [(ngModel)]="formData.mobile" 
+            name="mobile" 
+            maxlength="10"
+            pattern="[0-9]{10}"
+            required
+          >
+        </div>
 
-            <!-- Mobile No (Mandatory) -->
-            <div class="form-group">
-                <input 
-                    type="tel" 
-                    placeholder="Mobile Number *" 
-                    [(ngModel)]="formData.mobile" 
-                    name="mobile" 
-                    maxlength="10"
-                    pattern="[0-9]{10}"
-                    required
-                >
-            </div>
+        <!-- Email (Not Mandatory) -->
+        <div class="form-group">
+          <input 
+            type="email" 
+            placeholder="Email Address (Optional)" 
+            [(ngModel)]="formData.email" 
+            name="email"
+          >
+        </div>
 
-            <!-- Email (Not Mandatory) -->
-            <div class="form-group">
-                <input 
-                    type="email" 
-                    placeholder="Email Address (Optional)" 
-                    [(ngModel)]="formData.email" 
-                    name="email"
-                >
-            </div>
-
-            <button type="submit" class="btn-submit">Request a Callback Now</button>
-        </form>
+        <button type="submit" class="btn-submit">Request a Callback Now</button>
+      </form>
     </div>
-</div>
-
-<!-- Floating CTA (Moved out of the old booking bar) -->
-<!-- <div class="floating-cta">
-    SPEAK TO US! WE ARE ONLINE
-</div> -->
+  </div>
+</section>
