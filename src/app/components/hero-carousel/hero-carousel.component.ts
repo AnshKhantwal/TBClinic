@@ -19,7 +19,7 @@ interface LeadForm {
 export class HeroCarouselComponent implements OnInit {
 
   staticBackgroundUrl: string = 'assets/Doctor.jpeg';
-  hospitals: string[] = ['Select Clinic', 'Lawrence Road', 'Mayur Vihar', 'Durgapuri', 'Uttam Nagar', 'Tigri'];
+  hospitals: string[] = ['Select Clinic (Nearest Metro)', 'Lawrence Road (Mayur Vihar Pocket I)', 'Mayur Vihar (Keshav Puram)', 'Durgapuri (Maujpur‑Babarpur)', 'Uttam Nagar (Uttam Nagar East)', 'Tigri (Greater Kailash)'];
 
   formData: LeadForm = {
     name: '',

@@ -34,14 +34,25 @@ $bg-light: #f9f9f9;
   padding: 0 20px;
 }
 
-/* ✅ Branding Section - Logo Left, Details Right (ALL SCREENS) */
+/* 💡 Desktop Layout - Main content on a single line */
+.footer-main-content {
+  margin-left: 0; /* FIXED: Removed incorrect negative margin */
+  display: flex;
+  gap: 80px; /* ADJUSTED: Reasonable space between Branding section and Grid */
+}
+
+/* ✅ Branding Section - Logo Left, Details Right (DESKTOP MODIFIED) */
 .branding-section {
   display: flex;
   align-items: flex-start;
   gap: 20px;
-  margin-bottom: 30px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid #ddd;
+  
+  /* Desktop Styles: Fixed width, no border/vertical margin */
+  width: 300px; /* Allocate specific width for branding */
+  flex-shrink: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
 
   .footer-logo {
     flex-shrink: 0;
@@ -103,11 +114,12 @@ $bg-light: #f9f9f9;
   }
 }
 
-/* ✅ Footer Grid - 3 Columns (Clinic Hours, Our Network, Others) */
+/* ✅ Footer Grid - 3 Columns (DESKTOP MODIFIED) */
 .footer-grid {
+  flex-grow: 1; /* Allows the grid to take up remaining space horizontally */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 40px; /* ADJUSTED: Reduced gap for even column distribution */
 }
 
 .footer-col {
@@ -227,10 +239,29 @@ $bg-light: #f9f9f9;
 }
 
 /* =======================================================
-   📱 TABLET RESPONSIVENESS
-   ======================================================= */
+    📱 TABLET RESPONSIVENESS (Fixes for stacking)
+    ======================================================= */
 
 @media (max-width: 992px) {
+  /* 💡 Revert to vertical stacking for tablet/mobile */
+  .footer-main-content {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  /* 💡 Restore branding section's full width and visual separation */
+  .branding-section {
+    width: 100%; 
+    margin-bottom: 30px; 
+    padding-bottom: 25px; 
+    border-bottom: 1px solid #ddd;
+    
+    .footer-logo img {
+      height: 80px;
+    }
+  }
+  
+  /* Grid reverts to stacking columns vertically */
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 25px;
@@ -245,17 +276,11 @@ $bg-light: #f9f9f9;
       padding-bottom: 0;
     }
   }
-
-  .branding-section {
-    .footer-logo img {
-      height: 80px;
-    }
-  }
 }
 
 /* =======================================================
-   📱 MOBILE RESPONSIVENESS
-   ======================================================= */
+    📱 MOBILE RESPONSIVENESS (Ensured)
+    ======================================================= */
 
 @media (max-width: 768px) {
   .footer-top {
@@ -356,8 +381,8 @@ $bg-light: #f9f9f9;
 }
 
 /* =======================================================
-   📱 SMALL MOBILE (420px and below)
-   ======================================================= */
+    📱 SMALL MOBILE (480px and below)
+    ======================================================= */
 
 @media (max-width: 480px) {
   .branding-section {
