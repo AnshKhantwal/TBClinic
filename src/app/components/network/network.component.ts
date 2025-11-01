@@ -39,7 +39,7 @@ export class NetworkComponent {
   {
    branchName: 'Durgapuri Branch',
    addressLine: 'C-45, West Jyoti Nagar, Durgapuri Extension, Durgapuri, Shahdara, Delhi, 110094',
-   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.419266184519!2d77.29298490000001!3d28.6702788!2m3!1f0!2f0!3f0!3m2!1i1024!2i777!4f13.1!3m3!1m2!1s0x390cfb6d859a1175%3A0x6b7a5e8c18c5e69e!2sMED%20CROSS%20CLINIC!5e0!3m2!1iver_f!5m2!1sen!2sin'
+   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.419269067733!2d77.29041017548658!3d28.670281175652055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfb6d859a1175%3A0x6b7a5e8c18c5e69e!2sMed%20Cross%20Clinic!5e0!3m2!1sen!2sin!4v1730412380000!5m2!1sen!2sin'
   },
   {
    branchName: 'Uttam Nagar Branch',
