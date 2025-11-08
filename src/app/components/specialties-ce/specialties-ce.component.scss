@@ -1,296 +1,218 @@
-// @use "sass:color";
-
-// $primary-red: #b70000;
-// $dark-text: #333;
-// $border-color: #e5e5e5;
-
-// .specialties-ce-section {
-//   padding: 60px 0;
-//   background-color: #fff;
-// }
-
-// .ce-container {
-//   max-width: 1200px;
-//   margin: 0 auto;
-//   display: flex;
-//   align-items: flex-start;
-//   justify-content: space-between;
-//   gap: 60px;
-//   flex-wrap: wrap;
-// }
-
-// /* LEFT SIDE */
-// .ce-list-wrapper {
-//   flex: 1;
-//   min-width: 55%;
-
-//   h2 {
-//     font-size: 24px;
-//     color: $primary-red;
-//     font-weight: 700;
-//     margin-bottom: 25px;
-//     padding-bottom: 10px;
-//     border-bottom: 2px solid $border-color;
-//   }
-
-//   .specialties-grid {
-//     display: grid;
-//     grid-template-columns: repeat(2, minmax(200px, 1fr));
-//     gap: 25px 40px;
-//   }
-
-//   .specialty-item {
-//     display: flex;
-//     align-items: center;
-//     gap: 12px;
-//     margin-top: 10px;
-//     margin-bottom: 10px;
-//     color: $dark-text;
-//     font-size: 20px;
-//     font-weight: 500;
-//     transition: all 0.3s ease;
-
-//     img {
-//       width: 52px;
-//       height: 52px;
-//       object-fit: contain;
-//       filter: invert(18%) sepia(93%) saturate(7493%) hue-rotate(354deg)
-//         brightness(90%) contrast(94%);
-//     }
-
-//     &:hover {
-//       transform: translateX(5px);
-//       color: $primary-red;
-//     }
-//   }
-// }
-
-// .expert-search-section {
-//   flex: 1;
-//   max-width: 450px;
-//   position: relative;
-//   background: #f5f5f5;
-//   border-top-left-radius: 120px;
-//   border-bottom-left-radius: 120px;
-//   padding: 50px 40px 0 40px;
-//   overflow: hidden;
-
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-
-//   h3 {
-//     color: #9c0000;
-//     font-size: 24px;
-//     font-weight: 700;
-//     margin-bottom: 10px;
-//   }
-
-//   p {
-//     color: #444;
-//     font-size: 15px;
-//     line-height: 1.6;
-//     max-width: 340px;
-//     margin-bottom: 25px;
-//   }
-
-//   .btn-doctor-search {
-//     display: inline-flex;
-//     align-items: center;
-//     border: none;
-//     cursor: pointer;
-//     font-weight: 600;
-//     font-size: 15px;
-//     overflow: hidden;
-//     border-radius: 4px;
-
-//     .label {
-//       background-color: #f15f64;
-//       color: #fff;
-//       padding: 12px 24px;
-//       transition: background 0.3s;
-//     }
-
-//     .arrow {
-//       background-color: #d1d1d1;
-//       color: #9c0000;
-//       padding: 9px 14px;
-//       font-size: 18px;
-//       transition: all 0.3s ease;
-//       display: flex;
-//       align-items: center;
-//       justify-content: center;
-//     }
-
-//     &:hover {
-//       .label {
-//         background-color: color.adjust(#9c0000, $lightness: -8%, $space: hsl);
-//       }
-//       .arrow {
-//         background-color: color.adjust(#d1d1d1, $lightness: -8%, $space: hsl);
-//         transform: translateX(2px);
-//       }
-//     }
-//   }
-
-//   .expert-illustration {
-//     margin-top: 30px;
-//     text-align: center;
-
-//     img {
-//       width: 100%;
-//       max-width: 420px;
-//       height: auto;
-//       object-fit: contain;
-//     }
-//   }
-// }
-
 @use "sass:color";
 
 $primary-red: #b70000;
+$accent-coral: #f15f64;
 $dark-text: #333;
+$medium-text: #666;
 $border-color: #e5e5e5;
+$light-bg: #f5f5f5;
+$white: #ffffff;
 
+/* =======================================================
+   SPECIALTIES SECTION
+   ======================================================= */
 .specialties-ce-section {
-  padding: 60px 0;
-  background-color: #fff;
+  padding: 80px 0 60px;
+  background-color: $white;
+  position: relative;
+  overflow: hidden;
+  
+  // Subtle background pattern
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(180deg, rgba(247, 247, 247, 0.5) 0%, transparent 100%);
+    pointer-events: none;
+  }
 }
 
 .ce-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 40px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 60px;
   flex-wrap: wrap;
-
-  /* Responsive layout for smaller screens */
-  @media (max-width: 1024px) {
-    gap: 40px;
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    padding: 0 20px;
-  }
+  position: relative;
+  z-index: 1;
 }
 
-/* LEFT SIDE */
+/* =======================================================
+   LEFT SIDE - SPECIALTIES LIST
+   ======================================================= */
 .ce-list-wrapper {
   flex: 1;
   min-width: 55%;
+  animation: fadeInLeft 0.6s ease-out;
 
   h2 {
-    font-size: 24px;
+    font-size: 32px;
     color: $primary-red;
     font-weight: 700;
-    margin-bottom: 25px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid $border-color;
-
-    @media (max-width: 768px) {
-      text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid $border-color;
+    position: relative;
+    display: inline-block;
+    
+    // Accent underline
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, $primary-red, $accent-coral);
+      border-radius: 2px;
     }
   }
 
   .specialties-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); // always 2 per row
-  gap: 20px 30px; // consistent spacing
-
-  @media (max-width: 480px) {
-    grid-template-columns: repeat(2, 1fr); // still 2 per row even on small phones
-    gap: 15px 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px 40px;
+    margin-top: 10px;
   }
-}
-
 
   .specialty-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    gap: 15px;
+    padding: 12px;
     color: $dark-text;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    background: transparent;
+    
+    // Hover background
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(183, 0, 0, 0.03), rgba(241, 95, 100, 0.03));
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
     img {
-      width: 52px;
-      height: 52px;
+      width: 48px;
+      height: 48px;
       object-fit: contain;
-      filter: invert(18%) sepia(93%) saturate(7493%) hue-rotate(354deg)
-        brightness(90%) contrast(94%);
+      filter: invert(18%) sepia(93%) saturate(7493%) hue-rotate(354deg) brightness(90%) contrast(94%);
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
 
-      @media (max-width: 600px) {
-        width: 40px;
-        height: 40px;
-      }
+    span {
+      transition: color 0.3s ease;
     }
 
     &:hover {
-      transform: translateX(5px);
+      transform: translateX(8px);
       color: $primary-red;
+      
+      &::before {
+        opacity: 1;
+      }
+      
+      img {
+        transform: scale(1.1) rotate(5deg);
+        filter: invert(18%) sepia(93%) saturate(7493%) hue-rotate(354deg) brightness(100%) contrast(100%);
+      }
     }
-
-    @media (max-width: 600px) {
-      font-size: 16px;
-      justify-content: flex-start;
+    
+    // Active/Selected state
+    &.active {
+      background: linear-gradient(135deg, rgba(183, 0, 0, 0.05), rgba(241, 95, 100, 0.05));
+      border-left: 3px solid $primary-red;
+      color: $primary-red;
+      font-weight: 600;
     }
   }
 }
 
-/* RIGHT SIDE */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* =======================================================
+   RIGHT SIDE - EXPERT SEARCH
+   ======================================================= */
 .expert-search-section {
   flex: 1;
   max-width: 450px;
   position: relative;
-  background: #f5f5f5;
-  border-top-left-radius: 120px;
-  border-bottom-left-radius: 120px;
-  padding: 50px 40px 0 40px;
+  background: linear-gradient(135deg, $light-bg 0%, #fafafa 100%);
+  border-radius: 30px;
+  padding: 45px 40px 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  @media (max-width: 992px) {
-    max-width: 100%;
-    border-radius: 60px;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  animation: fadeInRight 0.6s ease-out;
+  
+  // Decorative corner element
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle at top right, rgba(241, 95, 100, 0.1), transparent 70%);
+    pointer-events: none;
   }
 
-  @media (max-width: 768px) {
-    padding: 40px 25px;
-    align-items: center;
-    text-align: center;
+  .expert-text {
+    position: relative;
+    z-index: 1;
   }
 
   h3 {
-    color: #9c0000;
-    font-size: 24px;
+    color: $primary-red;
+    font-size: 28px;
     font-weight: 700;
-    margin-bottom: 10px;
-
-    @media (max-width: 600px) {
-      font-size: 20px;
+    margin-bottom: 12px;
+    line-height: 1.3;
+    
+    // Medical icon
+    &::before {
+      content: '👨‍⚕️';
+      display: inline-block;
+      margin-right: 10px;
+      font-size: 1.1em;
     }
   }
 
   p {
-    color: #444;
+    color: $medium-text;
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.7;
     max-width: 340px;
-    margin-bottom: 25px;
-
-    @media (max-width: 768px) {
-      max-width: 100%;
-    }
+    margin-bottom: 30px;
+    font-weight: 400;
   }
 
   .btn-doctor-search {
@@ -301,76 +223,466 @@ $border-color: #e5e5e5;
     font-weight: 600;
     font-size: 15px;
     overflow: hidden;
-    border-radius: 4px;
-
-    @media (max-width: 600px) {
-      font-size: 14px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(183, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(183, 0, 0, 0.3);
+    }
+    
+    &:active {
+      transform: translateY(0);
     }
 
     .label {
-      background-color: #f15f64;
-      color: #fff;
-      padding: 12px 24px;
-      transition: background 0.3s;
+      background: linear-gradient(135deg, $accent-coral 0%, color.adjust($accent-coral, $lightness: -8%) 100%);
+      color: $white;
+      padding: 14px 28px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      
+      // Shine effect
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+      }
     }
 
     .arrow {
-      background-color: #d1d1d1;
-      color: #9c0000;
-      padding: 9px 14px;
-      font-size: 18px;
-      transition: all 0.3s ease;
+      background-color: #e0e0e0;
+      color: $primary-red;
+      padding: 11px 16px;
+      font-size: 20px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       align-items: center;
       justify-content: center;
+      font-weight: 700;
     }
 
     &:hover {
       .label {
-        background-color: color.adjust(#9c0000, $lightness: -8%, $space: hsl);
+        background: linear-gradient(135deg, color.adjust($accent-coral, $lightness: -5%) 0%, color.adjust($accent-coral, $lightness: -12%) 100%);
+        
+        &::before {
+          left: 100%;
+        }
       }
+      
       .arrow {
-        background-color: color.adjust(#d1d1d1, $lightness: -8%, $space: hsl);
-        transform: translateX(2px);
+        background-color: #d0d0d0;
+        transform: translateX(4px);
       }
     }
   }
 
   .expert-illustration {
-    margin-top: 30px;
+    margin-top: 25px;
     text-align: center;
+    position: relative;
+    z-index: 1;
 
     img {
       width: 100%;
-      max-width: 420px;
+      max-width: 380px;
       height: auto;
       object-fit: contain;
-
-      @media (max-width: 768px) {
-        max-width: 320px;
-      }
-
-      @media (max-width: 480px) {
-        max-width: 260px;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.03);
       }
     }
   }
 }
 
-/* Banner image responsive */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* =======================================================
+   BANNER SECTION
+   ======================================================= */
 .banner {
+  margin-top: 60px;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 40px;
+  
   img {
     width: 100%;
-    height: auto;
-    margin-top: 20px;
-    border-radius: 8px;
-
-    @media (max-width: 768px) {
-      height: 250px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.01);
     }
+  }
+}
 
-    @media (max-width: 480px) {
+/* =======================================================
+   TABLET RESPONSIVENESS (768px - 991px)
+   ======================================================= */
+@media (max-width: 991px) {
+  .specialties-ce-section {
+    padding: 60px 0 50px;
+  }
+  
+  .ce-container {
+    gap: 50px;
+    padding: 0 30px;
+  }
+  
+  .ce-list-wrapper {
+    min-width: 100%;
+    
+    h2 {
+      font-size: 28px;
+      text-align: center;
+      display: block;
+      
+      &::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+    
+    .specialties-grid {
+      gap: 20px 30px;
+    }
+    
+    .specialty-item {
+      font-size: 17px;
+      
+      img {
+        width: 44px;
+        height: 44px;
+      }
+    }
+  }
+  
+  .expert-search-section {
+    max-width: 100%;
+    border-radius: 25px;
+    padding: 40px 35px 20px;
+    
+    h3 {
+      font-size: 26px;
+    }
+    
+    .expert-illustration img {
+      max-width: 320px;
+    }
+  }
+  
+  .banner {
+    padding: 0 30px;
+    
+    img {
+      height: 300px;
+    }
+  }
+}
+
+/* =======================================================
+   MOBILE RESPONSIVENESS (480px - 767px)
+   ======================================================= */
+@media (max-width: 767px) {
+  .specialties-ce-section {
+    padding: 50px 0 40px;
+  }
+  
+  .ce-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 0 20px;
+  }
+  
+  .ce-list-wrapper {
+    width: 100%;
+    
+    h2 {
+      font-size: 24px;
+      margin-bottom: 25px;
+      padding-bottom: 12px;
+    }
+    
+    .specialties-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px 20px;
+    }
+    
+    .specialty-item {
+      font-size: 15px;
+      gap: 12px;
+      padding: 10px 8px;
+      
+      img {
+        width: 38px;
+        height: 38px;
+      }
+      
+      &:hover {
+        transform: translateX(4px);
+      }
+    }
+  }
+  
+  .expert-search-section {
+    padding: 35px 25px 15px;
+    text-align: center;
+    
+    h3 {
+      font-size: 22px;
+      
+      &::before {
+        display: block;
+        margin: 0 auto 8px;
+      }
+    }
+    
+    p {
+      max-width: 100%;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+    
+    .btn-doctor-search {
+      font-size: 14px;
+      
+      .label {
+        padding: 12px 22px;
+      }
+      
+      .arrow {
+        padding: 9px 14px;
+        font-size: 18px;
+      }
+    }
+    
+    .expert-illustration {
+      margin-top: 20px;
+      
+      img {
+        max-width: 280px;
+      }
+    }
+  }
+  
+  .banner {
+    margin-top: 40px;
+    padding: 0 20px;
+    
+    img {
+      height: 220px;
+      border-radius: 12px;
+    }
+  }
+}
+
+/* =======================================================
+   SMALL MOBILE (375px - 479px)
+   ======================================================= */
+@media (max-width: 479px) {
+  .specialties-ce-section {
+    padding: 40px 0 30px;
+  }
+  
+  .ce-container {
+    padding: 0 16px;
+    gap: 35px;
+  }
+  
+  .ce-list-wrapper {
+    h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      
+      &::after {
+        width: 60px;
+      }
+    }
+    
+    .specialties-grid {
+      gap: 12px 15px;
+    }
+    
+    .specialty-item {
+      font-size: 14px;
+      gap: 10px;
+      padding: 8px 6px;
+      
+      img {
+        width: 34px;
+        height: 34px;
+      }
+    }
+  }
+  
+  .expert-search-section {
+    padding: 30px 20px 10px;
+    border-radius: 20px;
+    
+    h3 {
+      font-size: 20px;
+    }
+    
+    p {
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    
+    .btn-doctor-search {
+      font-size: 13px;
+      
+      .label {
+        padding: 11px 20px;
+      }
+      
+      .arrow {
+        padding: 8px 12px;
+        font-size: 16px;
+      }
+    }
+    
+    .expert-illustration img {
+      max-width: 240px;
+    }
+  }
+  
+  .banner {
+    margin-top: 35px;
+    padding: 0 16px;
+    
+    img {
       height: 180px;
+      border-radius: 10px;
     }
+  }
+}
+
+/* =======================================================
+   EXTRA SMALL MOBILE (<= 374px)
+   ======================================================= */
+@media (max-width: 374px) {
+  .ce-container {
+    padding: 0 12px;
+  }
+  
+  .ce-list-wrapper {
+    h2 {
+      font-size: 20px;
+    }
+    
+    .specialties-grid {
+      gap: 10px 12px;
+    }
+    
+    .specialty-item {
+      font-size: 13px;
+      gap: 8px;
+      padding: 6px 4px;
+      
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+  
+  .expert-search-section {
+    padding: 25px 16px 8px;
+    
+    h3 {
+      font-size: 18px;
+    }
+    
+    p {
+      font-size: 12px;
+    }
+    
+    .btn-doctor-search {
+      font-size: 12px;
+      
+      .label {
+        padding: 10px 16px;
+      }
+      
+      .arrow {
+        padding: 7px 10px;
+        font-size: 14px;
+      }
+    }
+    
+    .expert-illustration img {
+      max-width: 200px;
+    }
+  }
+  
+  .banner {
+    padding: 0 12px;
+    
+    img {
+      height: 150px;
+    }
+  }
+}
+
+/* =======================================================
+   ACCESSIBILITY
+   ======================================================= */
+.specialty-item:focus,
+.btn-doctor-search:focus {
+  outline: 3px solid rgba(183, 0, 0, 0.4);
+  outline-offset: 2px;
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .specialty-item {
+    border: 2px solid transparent;
+    
+    &:hover,
+    &:focus {
+      border-color: $primary-red;
+    }
+  }
+  
+  .expert-search-section {
+    border: 2px solid $border-color;
   }
 }

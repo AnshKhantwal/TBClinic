@@ -1,218 +1,778 @@
 @use "sass:color";
 
-$primary-red: #a6001a; // Used for accents
+$primary-red: #a6001a;
+$accent-coral: #f15f64;
 $secondary-text: #555;
-$card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+$dark-text: #333;
+$light-bg: #f9f9f9;
+$white: #ffffff;
+$border-light: #eee;
+$card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+$card-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
 
+/* =======================================================
+   TESTIMONIALS SECTION
+   ======================================================= */
 .testimonials-section {
-    padding: 40px 20px;
-    font-family: 'Inter', sans-serif;
-    background: #f9f9f9;
+  padding: 60px 20px 50px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(180deg, $light-bg 0%, #ffffff 100%);
+  position: relative;
+//   max-width: 1400px;
+  margin: 0 auto;
+  overflow: hidden;
+  
+  // Decorative background elements
+  &::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(166, 0, 26, 0.03), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(241, 95, 100, 0.03), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 0 20px;
     position: relative;
-    // width: 100%;
-    max-width: 1500px;
-    margin: 0 auto;
-    margin-top: -40px;
+    z-index: 1;
 
-    .section-header {
+    h2 {
+      color: $dark-text;
+      font-size: 2.5em;
+      font-weight: 700;
+      margin: 0;
+      position: relative;
+      padding-bottom: 10px;
+      
+      // Decorative underline
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, $primary-red, $accent-coral);
+        border-radius: 2px;
+      }
+      
+      // Heart icon
+      &::before {
+        content: '💬';
+        margin-right: 12px;
+        display: inline-block;
+      }
+    }
+
+    .view-all {
+      color: $primary-red;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1em;
+      transition: all 0.3s ease;
+      padding: 8px 16px;
+      border-radius: 6px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 30px;
-      padding: 0 10px;
+      gap: 6px;
 
-      h2 {
-        color: #333;
-        font-size: 2em;
-        font-weight: 700;
-        margin: 0;
+      &::after {
+        content: '→';
+        transition: transform 0.3s ease;
       }
 
-      .view-all {
-        color: $primary-red;
-        font-weight: 600;
-        text-decoration: none;
-        font-size: 1em;
-        transition: color 0.2s ease;
-
-        &:hover {
-        //   color: darken($primary-red, 10%);
+      &:hover {
         color: color.adjust($primary-red, $lightness: -10%);
+        background: rgba(166, 0, 26, 0.05);
+        
+        &::after {
+          transform: translateX(4px);
         }
       }
     }
+  }
 }
 
+/* =======================================================
+   CAROUSEL CONTAINER
+   ======================================================= */
 .carousel-container {
-    display: flex;
-    align-items: center;
-    position: relative;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0 10px;
+  z-index: 1;
 }
 
 .slides-wrapper {
-    flex-grow: 1;
-    overflow: hidden;
-    margin: 0 40px; /* Space for buttons on desktop */
-    border-radius: 8px;
-    box-shadow: $card-shadow;
+  flex-grow: 1;
+  overflow: hidden;
+  margin: 0 50px;
+  border-radius: 16px;
+  box-shadow: $card-shadow;
+  position: relative;
+  
+  // Gradient borders effect
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(166, 0, 26, 0.2), rgba(241, 95, 100, 0.2));
+    // -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.5;
+  }
 }
 
 .testimonial-slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* =======================================================
+   TESTIMONIAL CARD
+   ======================================================= */
 .testimonial-card {
-    flex-shrink: 0;
-    width: 100%;
-    background: #fff;
-    padding: 40px 80px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 350px;
-    border-radius: 8px;
+  flex-shrink: 0;
+  width: 100%;
+  background: $white;
+  padding: 50px 80px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 380px;
+  border-radius: 16px;
+  position: relative;
+  
+  // Quote decoration background
+  &::before {
+    content: '"';
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 120px;
+    color: rgba(166, 0, 26, 0.03);
+    font-family: Georgia, serif;
+    line-height: 1;
+    pointer-events: none;
+  }
 }
 
 .quote-content {
-    margin-bottom: 25px;
-    
-    .quote-icon {
-        font-size: 2.5em;
-        color: $primary-red;
-        margin-bottom: 15px;
-        display: block;
-    }
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+  
+  .quote-icon {
+    font-size: 2.5em;
+    color: $primary-red;
+    margin-bottom: 20px;
+    display: block;
+    opacity: 0.9;
+    animation: fadeInScale 0.6s ease-out;
+  }
 
-    .quote-text {
-        font-size: 1.2em;
-        line-height: 1.6;
-        color: #333;
-        font-style: italic;
-        max-width: 800px;
-        margin: 0 auto;
+  .quote-text {
+    font-size: 1.25em;
+    line-height: 1.7;
+    color: $dark-text;
+    font-style: italic;
+    max-width: 850px;
+    margin: 0 auto;
+    font-weight: 400;
+    position: relative;
+    
+    // Subtle highlight effect
+    &::before,
+    &::after {
+      content: '"';
+      color: $primary-red;
+      font-size: 1.3em;
+      font-family: Georgia, serif;
+      opacity: 0.6;
     }
+    
+    &::before {
+      margin-right: 5px;
+    }
+    
+    &::after {
+      margin-left: 5px;
+    }
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 0.9;
+    transform: scale(1);
+  }
 }
 
 .author-info {
-    border-top: 1px solid #eee;
-    padding-top: 15px;
+  border-top: 2px solid $border-light;
+  padding-top: 20px;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  
+  // Rating stars (decorative)
+  &::before {
+    content: '⭐⭐⭐⭐⭐';
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+  
+  .author-name {
+    font-size: 1.1em;
+    color: $dark-text;
+    margin: 8px 0 5px 0;
+    font-weight: 600;
     
-    .author-name {
-        font-size: 1em;
-        color: #333;
-        margin: 5px 0 2px 0;
+    strong {
+      font-weight: 700;
     }
+  }
 
-    .author-title {
-        font-size: 0.9em;
-        color: $secondary-text;
-    }
+  .author-title {
+    font-size: 0.95em;
+    color: $secondary-text;
+    font-weight: 400;
+    line-height: 1.4;
+  }
 }
 
-// --- Navigation Buttons ---
+/* =======================================================
+   NAVIGATION BUTTONS
+   ======================================================= */
 .nav-button {
-    background: #fff;
-    border: 1px solid #ddd;
+  background: $white;
+  border: 2px solid #e0e0e0;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.3em;
+  color: $primary-red;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  
+  // Ripple effect background
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: $primary-red;
     border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    font-size: 1.2em;
-    color: $primary-red;
+    transform: scale(0);
+    transition: transform 0.3s ease;
+  }
+  
+  i {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+  }
+
+  &:hover {
+    background: $primary-red;
+    border-color: $primary-red;
+    box-shadow: 0 5px 20px rgba(166, 0, 26, 0.3);
+    transform: scale(1.05);
+    
+    &::before {
+      transform: scale(1);
+    }
+    
+    i {
+      color: $white;
+    }
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+  
+  // Disabled state
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    
+    &:hover {
+      background: $white;
+      border-color: #e0e0e0;
+      transform: scale(1);
+    }
+  }
+}
+
+.prev-button {
+  margin-right: 10px;
+}
+
+.next-button {
+  margin-left: 10px;
+}
+
+/* =======================================================
+   DOT INDICATORS
+   ======================================================= */
+.dots-container {
+  text-align: center;
+  margin-top: 30px;
+  padding: 10px 0;
+  position: relative;
+  z-index: 1;
+
+  .dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 6px;
+    background-color: #d0d0d0;
+    border-radius: 50%;
+    display: inline-block;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    z-index: 10;
-    flex-shrink: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
 
     &:hover {
-        background: $primary-red;
-        color: $primary-red;
-        box-shadow: 0 4px 12px rgba(166, 0, 26, 0.3);
-        border-color: $primary-red;
-    }
-    
-    // Accessibility for touch
-    &:active {
-      transform: scale(0.95);
-    }
-}
-
-
-// --- Dot Indicators ---
-.dots-container {
-    text-align: center;
-    margin-top: 20px;
-
-    .dot {
-        height: 10px;
-        width: 10px;
-        margin: 0 5px;
-        background-color: #bbb;
-        border-radius: 50%;
-        display: inline-block;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-
-        &.active {
-            background-color: $primary-red;
-            transform: scale(1.2);
-        }
-    }
-}
-
-
-// --- Responsive Adjustments ---
-@media (max-width: 768px) {
-    .testimonials-section {
-        padding: 20px 0;
-    }
-    
-    .carousel-container {
-        // Buttons sit outside the wrapper on small screen
-        margin: 0 10px;
+      background-color: color.adjust($primary-red, $lightness: 20%);
+      transform: scale(1.15);
     }
 
-    .testimonial-card {
-        padding: 30px 40px;
-        min-height: 300px;
-    }
-    
-    .quote-content {
-        .quote-icon {
-            font-size: 2em;
-        }
-        .quote-text {
-            font-size: 1em;
-        }
-    }
-    
-    // Reduce button size
-    .nav-button {
-        width: 40px;
-        height: 40px;
-        font-size: 1em;
-    }
-}
-
-@media (max-width: 600px) {
-    .testimonial-card {
-        padding: 20px 25px;
-    }
-    .slides-wrapper {
-      margin: 0 10px;
-    }
-    .section-header {
-      h2 {
-        font-size: 1.5em;
+    &.active {
+      background-color: $primary-red;
+      transform: scale(1.3);
+      box-shadow: 0 0 0 4px rgba(166, 0, 26, 0.15);
+      
+      &::after {
+        border-color: rgba(166, 0, 26, 0.2);
       }
     }
+  }
+}
+
+/* =======================================================
+   TABLET RESPONSIVENESS (768px - 991px)
+   ======================================================= */
+@media (max-width: 991px) {
+  .testimonials-section {
+    padding: 50px 20px 40px;
     
-    // Hide dots on very small screens if necessary
-    .dots-container {
-      display: none;
+    .section-header {
+      h2 {
+        font-size: 2.2em;
+      }
     }
+  }
+  
+  .testimonial-card {
+    padding: 0 0;
+    min-height: 350px;
+  }
+  
+  .quote-content {
+    .quote-text {
+      font-size: 1.15em;
+    }
+  }
+}
+
+/* =======================================================
+   MOBILE RESPONSIVENESS (480px - 767px)
+   ======================================================= */
+@media (max-width: 767px) {
+  .testimonials-section {
+    padding: 40px 15px 35px;
+    margin-top: -70px;
+    
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 30px;
+      padding: 0 10px;
+      
+      h2 {
+        font-size: 1.8em;
+        
+        &::before {
+          font-size: 0.9em;
+        }
+      }
+      
+      .view-all {
+        font-size: 0.9em;
+      }
+    }
+  }
+  
+  .carousel-container {
+    margin: 0;
+    padding: 0 5px;
+  }
+  
+  .slides-wrapper {
+    margin: 0 45px;
+    border-radius: 12px;
+  }
+  
+  .testimonial-card {
+    padding: 0 0;
+    min-height: 320px;
+    
+    &::before {
+      font-size: 80px;
+      top: 15px;
+      left: 15px;
+    }
+  }
+  
+  .quote-content {
+    margin-bottom: 25px;
+    
+    .quote-icon {
+      font-size: 2em;
+      margin-bottom: 15px;
+    }
+    
+    .quote-text {
+      font-size: 1.05em;
+      line-height: 1.6;
+      
+      &::before,
+      &::after {
+        font-size: 1.2em;
+      }
+    }
+  }
+  
+  .author-info {
+    padding-top: 15px;
+    
+    &::before {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    .author-name {
+      font-size: 1em;
+    }
+    
+    .author-title {
+      font-size: 0.9em;
+    }
+  }
+  
+  .nav-button {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1em;
+  }
+  
+  .dots-container {
+    margin-top: 25px;
+    
+    .dot {
+      height: 10px;
+      width: 10px;
+      margin: 0 5px;
+    }
+  }
+}
+
+/* =======================================================
+   SMALL MOBILE (375px - 479px)
+   ======================================================= */
+@media (max-width: 479px) {
+  .testimonials-section {
+    padding: 35px 12px 30px;
+    
+    .section-header {
+      h2 {
+        font-size: 1.6em;
+      }
+    }
+  }
+  
+  .slides-wrapper {
+    margin: 0 40px;
+  }
+  
+  .testimonial-card {
+    padding: 0 0;
+    min-height: 300px;
+    
+    &::before {
+      font-size: 60px;
+      top: 10px;
+      left: 10px;
+    }
+  }
+  
+  .quote-content {
+    .quote-icon {
+      font-size: 1.8em;
+    }
+    
+    .quote-text {
+      font-size: 0.98em;
+      line-height: 1.55;
+    }
+  }
+  
+  .author-info {
+    &::before {
+      font-size: 12px;
+    }
+    
+    .author-name {
+      font-size: 0.95em;
+    }
+    
+    .author-title {
+      font-size: 0.85em;
+    }
+  }
+  
+  .nav-button {
+    width: 42px;
+    height: 42px;
+    font-size: 1em;
+  }
+  
+  .dots-container {
+    margin-top: 20px;
+    
+    .dot {
+      height: 9px;
+      width: 9px;
+      margin: 0 4px;
+    }
+  }
+}
+
+/* =======================================================
+   EXTRA SMALL MOBILE (<= 374px)
+   ======================================================= */
+@media (max-width: 374px) {
+  .testimonials-section {
+    padding: 30px 10px 25px;
+    
+    .section-header {
+      h2 {
+        font-size: 1.4em;
+        
+        &::before {
+          display: none;
+        }
+        
+        &::after {
+          width: 60px;
+          height: 3px;
+        }
+      }
+      
+      .view-all {
+        font-size: 0.85em;
+        padding: 6px 12px;
+      }
+    }
+  }
+  
+  .carousel-container {
+    padding: 0;
+  }
+  
+  .slides-wrapper {
+    margin: 0 35px;
+    border-radius: 10px;
+  }
+  
+  .testimonial-card {
+    padding: 0 0;
+    min-height: 280px;
+    
+    &::before {
+      font-size: 50px;
+      top: 8px;
+      left: 8px;
+    }
+  }
+  
+  .quote-content {
+    margin-bottom: 20px;
+    
+    .quote-icon {
+      font-size: 1.6em;
+      margin-bottom: 12px;
+    }
+    
+    .quote-text {
+      font-size: 0.9em;
+      line-height: 1.5;
+      
+      &::before,
+      &::after {
+        font-size: 1.1em;
+        margin: 0 3px;
+      }
+    }
+  }
+  
+  .author-info {
+    padding-top: 12px;
+    
+    &::before {
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+    
+    .author-name {
+      font-size: 0.9em;
+      margin: 6px 0 4px 0;
+    }
+    
+    .author-title {
+      font-size: 0.8em;
+    }
+  }
+  
+  .nav-button {
+    width: 38px;
+    height: 38px;
+    font-size: 0.95em;
+    border-width: 1.5px;
+  }
+  
+  .dots-container {
+    margin-top: 18px;
+    
+    .dot {
+      height: 8px;
+      width: 8px;
+      margin: 0 3px;
+      
+      &.active {
+        transform: scale(1.25);
+      }
+    }
+  }
+}
+
+/* =======================================================
+   ACCESSIBILITY
+   ======================================================= */
+.nav-button:focus,
+.dot:focus {
+  outline: 3px solid rgba(166, 0, 26, 0.4);
+  outline-offset: 3px;
+}
+
+// Keyboard navigation
+.testimonial-card:focus {
+  outline: 2px solid rgba(166, 0, 26, 0.3);
+  outline-offset: 4px;
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .testimonial-slider {
+    transition: none !important;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .testimonial-card {
+    border: 3px solid $dark-text;
+  }
+  
+  .nav-button {
+    border-width: 3px;
+  }
+  
+  .dot {
+    border: 2px solid $dark-text;
+    
+    &.active {
+      border-width: 3px;
+    }
+  }
+}
+
+/* =======================================================
+   PRINT STYLES
+   ======================================================= */
+@media print {
+  .nav-button,
+  .dots-container {
+    display: none;
+  }
+  
+  .testimonial-slider {
+    transform: none !important;
+  }
+  
+  .testimonial-card {
+    page-break-inside: avoid;
+  }
 }

@@ -4,27 +4,61 @@ $primary-red: #b71c1c;
 $light-red-button: #f15f64;
 $text-light: #ffffff;
 $navy-blue-header: #003a70;
-$font-family: 'Arial', sans-serif;
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
-/* ---------- MARQUEE ---------- */
+/* =======================================================
+   MARQUEE SECTION - ENHANCED
+   ======================================================= */
 .top-marquee {
   width: 100%;
   margin-top: -20px;
-  background-color: #f15f64;
-  color: #fff;
+  background: linear-gradient(135deg, $light-red-button 0%, color.adjust($light-red-button, $lightness: -8%) 100%);
+  color: $text-light;
   overflow: hidden;
   white-space: nowrap;
-  padding: 8px 0;
+  padding: 10px 0;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.5px;
   z-index: 1000;
+  box-shadow: 0 2px 8px rgba(241, 95, 100, 0.2);
+  position: relative;
+  
+  // Subtle shine effect
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shine 3s infinite;
+  }
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  100% { left: 200%; }
 }
 
 .marquee-content {
   display: inline-block;
   padding-left: 100%;
-  animation: marquee 20s linear infinite;
+  animation: marquee 25s linear infinite;
+  font-style: italic;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  
+  // Add heart icon
+  &::before {
+    content: '❤️';
+    margin-right: 15px;
+  }
+  
+  &::after {
+    content: '❤️';
+    margin-left: 15px;
+  }
 }
 
 @keyframes marquee {
@@ -32,16 +66,22 @@ $font-family: 'Arial', sans-serif;
   100% { transform: translateX(-100%); }
 }
 
-/* ---------- HERO SECTION ---------- */
+/* =======================================================
+   HERO SECTION - MOBILE-FIRST REDESIGN
+   ======================================================= */
 .hero-section {
   position: relative;
   width: 100%;
-  height: 70vh;
-  min-height: 550px;
+  min-height: 100vh;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-family;
+  padding: 20px 0;
 }
 
-/* ---------- BLURRED BACKGROUND ---------- */
+/* ---------- ENHANCED BLURRED BACKGROUND ---------- */
 .hero-background {
   position: absolute;
   top: 0;
@@ -51,11 +91,12 @@ $font-family: 'Arial', sans-serif;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(10px);
-  -webkit-filter: blur(10px);
-  transform: scale(1.1);
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  transform: scale(1.05);
   z-index: 1;
 
+  // Gradient overlay for better text contrast
   &::after {
     content: '';
     position: absolute;
@@ -63,236 +104,344 @@ $font-family: 'Arial', sans-serif;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: linear-gradient(
+      135deg,
+      rgba(0, 58, 112, 0.4) 0%,
+      rgba(183, 28, 28, 0.3) 100%
+    );
   }
 }
 
-/* ---------- FORM OVERLAY - CENTERED ---------- */
+/* ---------- FORM CONTAINER - IMPROVED ---------- */
 .form-overlay-container {
-  position: absolute;
-  margin-top: -20px;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  max-width: 420px;
+  padding: 30px 16px;
   z-index: 10;
-  font-family: $font-family;
+  animation: slideInUp 0.6s ease-out;
+  margin: 0 auto;
 }
 
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- FORM CARD - ENHANCED ---------- */
 .form-card {
-  background: #ffffff;
-  padding: 32px 35px 35px;  /* ✅ Reduced padding */
-  border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 36px 32px 38px;
+  border-radius: 16px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.5);
   width: 100%;
-  max-width: 380px;  /* ✅ Reduced from 420px */
   text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  
+  // Subtle top border accent
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, $navy-blue-header, $light-red-button);
+    border-radius: 0 0 4px 4px;
+  }
 
   h3 {
     color: $navy-blue-header;
-    font-size: 1.65em;  /* ✅ Reduced size */
-    margin-bottom: 6px;
+    font-size: 1.75em;
+    margin-bottom: 8px;
     font-weight: 700;
     line-height: 1.2;
+    position: relative;
+    
+    // Medical icon
+    &::before {
+      content: '🏥';
+      display: block;
+      font-size: 2em;
+      margin-bottom: 8px;
+      filter: grayscale(0.2);
+    }
   }
 
   .form-subtitle {
-    color: #666;
-    margin-bottom: 24px;  /* ✅ Reduced spacing */
-    font-size: 0.92em;
-    line-height: 1.4;
+    color: #555;
+    margin-bottom: 26px;
+    font-size: 0.94em;
+    line-height: 1.5;
+    font-weight: 500;
+    
+    // Add urgency indicator
+    &::before {
+      content: '⏱️';
+      margin-right: 6px;
+    }
   }
 
   .form-group {
-    margin-bottom: 14px;  /* ✅ Reduced spacing */
+    margin-bottom: 16px;
     text-align: left;
+    position: relative;
 
     input,
     select {
       width: 100%;
-      padding: 13px 15px;  /* ✅ Reduced padding */
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 14.5px;  /* ✅ Slightly smaller */
+      padding: 14px 16px 14px 44px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 14.5px;
       color: #333;
-      background-color: #f9f9f9;
-      transition: all 0.2s;
+      background-color: #fafafa;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       box-sizing: border-box;
+      font-family: $font-family;
 
       &::placeholder {
         color: #999;
+        font-weight: 400;
       }
 
       &:focus {
         outline: none;
-        border-color: $primary-red;
+        border-color: $light-red-button;
         background-color: #fff;
-        box-shadow: 0 0 0 3px rgba(183, 28, 28, 0.1);
+        box-shadow: 
+          0 0 0 4px rgba(241, 95, 100, 0.1),
+          0 4px 12px rgba(0, 0, 0, 0.08);
+        transform: translateY(-1px);
       }
+      
+      &:valid:not(:placeholder-shown) {
+        border-color: #4caf50;
+        background-color: #f1f8f4;
+      }
+    }
+
+    // Icons for each field
+    &::before {
+      content: '👤';
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    // Specific icons for different inputs
+    &:has(input[type="tel"])::before {
+      content: '📱';
+    }
+    
+    &:has(input[type="email"])::before {
+      content: '✉️';
+    }
+    
+    &:has(select)::before {
+      content: '🏥';
     }
 
     select {
       appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 12px center;
-      background-size: 18px;
-      padding-right: 38px;
+      background-position: right 14px center;
+      background-size: 20px;
+      padding-right: 44px;
       cursor: pointer;
+      font-weight: 500;
+      
+      &:focus {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f15f64' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      }
     }
   }
 
   .btn-submit {
-    background-color: $light-red-button;
+    background: linear-gradient(135deg, $light-red-button 0%, color.adjust($light-red-button, $lightness: -10%) 100%);
     color: white;
     width: 100%;
-    padding: 14px 20px;  /* ✅ Reduced padding */
+    padding: 16px 24px;
     border: none;
-    border-radius: 8px;
-    font-size: 15.5px;  /* ✅ Slightly smaller */
+    border-radius: 10px;
+    font-size: 16px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(241, 95, 100, 0.4);
-    margin-top: 8px;  /* ✅ Reduced spacing */
-    text-transform: none;
+    box-shadow: 
+      0 6px 20px rgba(241, 95, 100, 0.4),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+    margin-top: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    
+    // Animated pulse effect
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    &:hover::before {
+      width: 300px;
+      height: 300px;
+    }
 
     &:hover {
-      background-color: color.adjust($light-red-button, $lightness: -10%);
+      background: linear-gradient(135deg, color.adjust($light-red-button, $lightness: -5%) 0%, color.adjust($light-red-button, $lightness: -15%) 100%);
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(241, 95, 100, 0.5);
+      box-shadow: 
+        0 8px 25px rgba(241, 95, 100, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.15);
     }
 
     &:active {
       transform: translateY(0);
+      box-shadow: 
+        0 4px 12px rgba(241, 95, 100, 0.3),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    // Add icon
+    &::after {
+      content: '→';
+      margin-left: 8px;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    
+    &:hover::after {
+      transform: translateX(4px);
     }
   }
 }
 
 /* =======================================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN - MOBILE FIRST
    ======================================================= */
 
-/* Large Desktop */
-@media (min-width: 1600px) {
-  .form-card {
-    max-width: 400px;
-    padding: 34px 38px 38px;
+/* Extra Small Mobile (320px - 374px) */
+@media (max-width: 374px) {
+  .top-marquee {
+    font-size: 11px;
+    padding: 7px 0;
   }
-}
-
-@media (min-width: 1400px) and (max-width: 1599px) {
-  .form-card {
-    max-width: 390px;
-  }
-}
-
-/* Standard Desktop */
-@media (min-width: 1200px) and (max-width: 1399px) {
-  .form-card {
-    max-width: 370px;
-  }
-}
-
-/* Tablets */
-@media (max-width: 1199px) {
+  
   .hero-section {
-    height: 65vh;
-    min-height: 520px;
-  }
-
-  .form-card {
-    max-width: 370px;
-    padding: 30px 32px 33px;
-  }
-}
-
-@media (max-width: 992px) {
-  .form-card {
-    max-width: 380px;
-    margin-bottom: 120px;
-  }
-}
-
-/* Mobile Devices - Adjusted background height */
-@media (max-width: 768px) {
-  .hero-section {
-    height: auto;  /* ✅ Changed from 100vh */
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: -280px;
+    padding: 15px 0;
   }
-
-  .hero-background {
-    filter: blur(8px);
-    -webkit-filter: blur(8px);
-    height: 70%;  /* ✅ Matches container */
-  }
-
+  
   .form-overlay-container {
-    position: relative;  /* ✅ Changed from absolute */
-    padding: 40px 20px;  /* ✅ Increased vertical padding */
-    margin-top: -250px;
+    padding: 20px 12px;
+    max-width: 100%;
+    margin-right: 45px;
   }
 
   .form-card {
-    max-width: 360px;  /* ✅ Adjusted for mobile */
-    padding: 30px 28px 33px;
+    padding: 24px 18px 26px;
+    border-radius: 12px;
+    max-width: 100%;
 
     h3 {
-      font-size: 1.6em;
+      font-size: 1.35em;
+      margin-bottom: 6px;
+      
+      &::before {
+        font-size: 1.5em;
+        margin-bottom: 5px;
+      }
     }
 
     .form-subtitle {
-      font-size: 0.9em;
-      margin-bottom: 22px;
+      font-size: 0.86em;
+      margin-bottom: 18px;
     }
 
     .form-group {
-      margin-bottom: 14px;
+      margin-bottom: 12px;
 
       input,
       select {
-        padding: 13px 15px;
-        font-size: 14.5px;
+        padding: 11px 12px 11px 38px;
+        font-size: 13px;
+        border-radius: 8px;
+      }
+      
+      &::before {
+        font-size: 15px;
+        left: 12px;
+      }
+
+      select {
+        background-position: right 10px center;
+        background-size: 17px;
       }
     }
 
     .btn-submit {
-      padding: 14px 20px;
-      font-size: 15.5px;
+      padding: 13px 18px;
+      font-size: 13px;
+      border-radius: 8px;
+      margin-top: 8px;
     }
-  }
-
-  .top-marquee {
-    font-size: 13px;
-    padding: 6px 0;
   }
 }
 
-/* Small Mobile */
-@media (max-width: 480px) {
+/* Small Mobile (375px - 479px) */
+@media (min-width: 375px) and (max-width: 479px) {
+  .top-marquee {
+    font-size: 12px;
+    margin-top: 0;
+    padding: 8px 0;
+  }
+  
   .hero-section {
     min-height: 100vh;
+    padding: 20px 0;
   }
-
+  
   .form-overlay-container {
-    padding: 30px 15px;  /* ✅ Adjusted padding */
-    margin-bottom: -80px;
+    padding: 25px 15px;
+    max-width: 100%;
+    margin-right: 45px;
   }
 
   .form-card {
-    max-width: 320px;  /* ✅ Smaller for small phones */
     padding: 26px 22px 28px;
+    max-width: 100%;
 
     h3 {
-      font-size: 1.5em;
+      font-size: 1.45em;
+      
+      &::before {
+        font-size: 1.65em;
+      }
     }
 
     .form-subtitle {
@@ -301,71 +450,219 @@ $font-family: 'Arial', sans-serif;
     }
 
     .form-group {
-      margin-bottom: 12px;
+      margin-bottom: 13px;
 
       input,
       select {
-        padding: 12px 14px;
-        font-size: 14px;
-      }
-
-      select {
-        background-position: right 10px center;
-        background-size: 16px;
-      }
-    }
-
-    .btn-submit {
-      padding: 13px 18px;
-      font-size: 15px;
-      margin-top: 6px;
-    }
-  }
-}
-
-/* Extra Small Mobile (iPhone SE, etc) */
-@media (max-width: 375px) {
-  .form-overlay-container {
-    padding: 25px 12px;
-  }
-
-  .form-card {
-    max-width: 300px;  /* ✅ Even smaller */
-    padding: 24px 20px 26px;
-
-    h3 {
-      font-size: 1.4em;
-    }
-
-    .form-subtitle {
-      font-size: 0.86em;
-    }
-
-    .form-group {
-      margin-bottom: 11px;
-
-      input,
-      select {
-        padding: 11px 13px;
+        padding: 12px 14px 12px 40px;
         font-size: 13.5px;
       }
     }
 
     .btn-submit {
-      padding: 12px 16px;
-      font-size: 14.5px;
+      padding: 14px 20px;
+      font-size: 14px;
+      margin-top: 10px;
     }
   }
 }
 
-/* Very Small Screens */
-@media (max-width: 320px) {
+/* Mobile (480px - 767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+  .top-marquee {
+    font-size: 13px;
+  }
+  
+  .hero-section {
+    min-height: 100vh;
+    padding: 25px 0;
+  }
+  
+  .form-overlay-container {
+    max-width: 90%;
+    padding: 30px 20px;
+    margin-right: 45px;
+  }
+
   .form-card {
-    max-width: 280px;
-    padding: 22px 18px 24px;
+    padding: 30px 26px 32px;
 
     h3 {
-      font-size: 1.3em;
+      font-size: 1.55em;
     }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+    
+    .btn-submit {
+      margin-top: 12px;
+    }
+  }
+}
+
+/* Tablets (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .hero-section {
+    min-height: 650px;
+    padding: 30px 0;
+  }
+  
+  .form-overlay-container {
+    max-width: 400px;
+    margin-right: 45px;
+  }
+
+  .form-card {
+    padding: 34px 30px 36px;
+
+    h3 {
+      font-size: 1.7em;
+    }
+  }
+}
+
+/* Desktop (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .hero-section {
+    min-height: 600px;
+  }
+  
+  .form-overlay-container {
+    max-width: 410px;
+    margin-right: 45px;
+  }
+
+  .form-card {
+    padding: 36px 32px 38px;
+
+    h3 {
+      font-size: 1.75em;
+    }
+  }
+}
+
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+  .hero-section {
+    min-height: 650px;
+  }
+  
+  .form-overlay-container {
+    max-width: 420px;
+  }
+
+  .form-card {
+    padding: 38px 34px 40px;
+
+    h3 {
+      font-size: 1.85em;
+    }
+    
+    .btn-submit {
+      padding: 17px 26px;
+      font-size: 16.5px;
+    }
+  }
+}
+
+/* Extra Large Desktop (1600px+) */
+@media (min-width: 1600px) {
+  .hero-section {
+    min-height: 700px;
+  }
+  
+  .form-card {
+    max-width: 440px;
+    padding: 40px 36px 42px;
+
+    h3 {
+      font-size: 1.95em;
+    }
+  }
+}
+
+/* =======================================================
+   ACCESSIBILITY & PERFORMANCE
+   ======================================================= */
+
+// Loading state for form
+.form-card.loading {
+  .btn-submit {
+    background: #ccc;
+    cursor: not-allowed;
+    
+    &::after {
+      content: '⏳';
+      animation: spin 1s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// Form validation states
+.form-group {
+  input.error,
+  select.error {
+    border-color: #f44336 !important;
+    background-color: #ffebee !important;
+    
+    &:focus {
+      box-shadow: 0 0 0 4px rgba(244, 67, 54, 0.1) !important;
+    }
+  }
+  
+  input.success,
+  select.success {
+    border-color: #4caf50 !important;
+    background-color: #f1f8f4 !important;
+  }
+}
+
+// Focus visible for keyboard navigation
+*:focus-visible {
+  outline: 3px solid rgba(241, 95, 100, 0.5);
+  outline-offset: 2px;
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .marquee-content {
+    animation: none;
+    padding-left: 20px;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .form-card {
+    border: 3px solid $navy-blue-header;
+  }
+  
+  .form-group input,
+  .form-group select {
+    border-width: 3px;
+  }
+}
+
+// Dark mode support (if needed)
+@media (prefers-color-scheme: dark) {
+  .hero-background::after {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 58, 112, 0.6) 0%,
+      rgba(183, 28, 28, 0.5) 100%
+    );
   }
 }
