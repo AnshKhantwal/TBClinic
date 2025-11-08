@@ -21,7 +21,7 @@ export class ContactUsComponent implements OnInit {
   };
 
   // Dropdown options
-  hospitals: string[] = ['Select Clinic (Nearest Metro Station)', 'Lawrence Road (Mayur Vihar Pocket I)', 'Mayur Vihar (Keshav Puram)', 'Durgapuri (Maujpur‑Babarpur)', 'Uttam Nagar (Uttam Nagar East)', 'Tigri (Greater Kailash)'];
+  hospitals: string[] = ['Select Clinic (Nearest Metro Station)', 'Lawrence Road (Keshavpuram, Red Line)', 'Mayur Vihar (Mayur Vihar Pocket-I, Pink Line)', 'Durgapuri (Shahdra, Red Line)', 'Uttam Nagar (Nawada, Blue Line)', 'Tigri (Saket, Yellow Line)'];
 
   // Web3Forms API key
   private WEB3FORMS_ACCESS_KEY = '282bc130-d161-4e24-9e93-8eeac1293408'; // <-- Replace with your actual key
