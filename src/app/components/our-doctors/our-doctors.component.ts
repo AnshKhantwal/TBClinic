@@ -24,10 +24,10 @@ export class OurDoctorsComponent {
 
   // Sub-Doctors Data for the Grid
   subDoctors: Doctor[] = [
-    { name: 'Dr. Deepak', experience: '12+ years' },
-    { name: 'Dr. Pranav', experience: '13+ years' },
-    { name: 'Dr. Diksha', experience: '7+ years' },
-    { name: 'Dr. Vikas', experience: '4+ years' }
+    { name: 'Dr. Deepak', experience: '' },
+    { name: 'Dr. Pranav', experience: '' },
+    { name: 'Dr. Diksha', experience: '' },
+    { name: 'Dr. Vikas', experience: '' }
   ];
 
   // Removed all search-related signals and methods.

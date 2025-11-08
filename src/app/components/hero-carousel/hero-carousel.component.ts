@@ -43,12 +43,12 @@ export class HeroCarouselComponent implements OnInit {
     const formData = new FormData();
     formData.append('access_key', '282bc130-d161-4e24-9e93-8eeac1293408');
     formData.append('subject', `New Consultation Request - ${this.formData.name}`);
-    formData.append('from_name', 'Sugar Clinic Website');
+    formData.append('from_name', 'TBClinic Website');
     formData.append('name', this.formData.name);
     formData.append('email', this.formData.email);
     formData.append('mobile', this.formData.mobile);
     formData.append('hospital', this.formData.clinic);
-    formData.append('message', 'Callback request via Hero Carousel Form');
+    formData.append('message', 'Please contact the above mentioned details');
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
