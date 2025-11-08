@@ -192,27 +192,46 @@ $map-border: #f2f2f2;
     line-height: 1.6;
   }
 
-  /* --- Tablet & Mobile --- */
+  /* --- Tablet (≤ 992px) --- */
   @media (max-width: 992px) {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     text-align: center;
+    padding: 35px 25px;
   }
 
+  /* --- Mobile (≤ 768px) --- */
   @media (max-width: 768px) {
-    width: 100%;
-    max-width: 450px;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  @media (max-width: 480px) {
+    width: 90%;
+    max-width: 500px;
     padding: 30px 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
     .info-title {
       font-size: 20px;
     }
+
     .info-description {
       font-size: 14px;
+      line-height: 1.5;
+    }
+  }
+
+  /* --- Small Mobile (≤ 480px) --- */
+  @media (max-width: 480px) {
+    max-width: 100%;
+    padding: 25px 16px;
+    border-radius: 8px;
+
+    .info-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .info-description {
+      font-size: 13px;
     }
   }
 }
