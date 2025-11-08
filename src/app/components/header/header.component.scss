@@ -510,43 +510,46 @@ $medium-shadow: rgba(0, 0, 0, 0.15);
 }
 // Force mobile menu to be above everything - ADD AT THE VERY END
 @media (max-width: 992px) {
-    // When menu is open, hide everything below
+    // Make sure top-bar and navbar stay visible
+    .top-bar,
+    .navbar {
+        position: relative;
+        z-index: 1000001 !important;
+    }
+    
+    // When menu is open
     .menu-toggle:checked {
-        ~ * {
-            display: none;
+        // Hide only the content AFTER the header
+        ~ .nav-links ~ * {
+            display: none !important;
         }
         
-        // But keep the nav menu visible
+        // Full screen menu
         ~ .nav-links {
             display: flex !important;
             position: fixed !important;
-            top: 0 !important;
+            top: 120px !important; // Below top-bar + navbar
             left: 0 !important;
             right: 0 !important;
             bottom: 0 !important;
             width: 100vw !important;
-            height: 100vh !important;
+            height: calc(100vh - 120px) !important;
             z-index: 999999 !important;
             background: #ffffff !important;
-            padding-top: 120px !important;
-            margin: 0 !important;
+            padding-top: 20px !important;
+            transform: translateX(0) !important;
         }
         
-        // Keep hamburger icon visible
+        // Keep hamburger icon visible and animated
         + .menu-icon {
-            display: flex !important;
-            position: fixed !important;
-            top: 20px !important;
-            right: 24px !important;
-            z-index: 1000000 !important;
+            z-index: 1000002 !important;
         }
     }
-    
-    // Keep logo visible when menu is open
-    .navbar {
-        position: fixed !important;
-        top: 0 !important;
-        width: 100% !important;
-        z-index: 1000000 !important;
+}
+
+@media (max-width: 576px) {
+    .menu-toggle:checked ~ .nav-links {
+        top: 100px !important; // Smaller top-bar + navbar on mobile
+        height: calc(100vh - 100px) !important;
     }
 }
